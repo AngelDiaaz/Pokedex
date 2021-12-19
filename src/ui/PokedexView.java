@@ -8,22 +8,23 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.image.BufferedImage;
 
 import utils.Almacen;
 
 import javax.imageio.ImageIO;
+import java.awt.Color;
+import java.awt.Window.Type;
 
 public class PokedexView {
 
+	//Propiedades
 	private JFrame frmPokedex;
 	private JButton btnCerrarSesion;
-	private JButton btnAnadir;
+	private JButton btnCrear;
 	private JButton btnModificar;
 	private JButton btnEliminar;
-	private JFrame parent;
 	private JLabel lblNombrePokemon;
 	private JLabel lblTipo;
 	private JLabel lblPeso;
@@ -38,7 +39,7 @@ public class PokedexView {
 	private JLabel lblVerHabilidad;
 	private JLabel lblVerCategoria;
 	private JLabel lblVerTipo;
-	private int index = 0;
+	private static int index = 0;
 	private JLabel lblFoto;
 
 	/**
@@ -46,8 +47,7 @@ public class PokedexView {
 	 * 
 	 * @param frmLogin
 	 */
-	public PokedexView(JFrame parent) {
-		this.parent = parent;
+	public PokedexView() {
 		initialize();
 		frmPokedex.setVisible(true);
 	}
@@ -59,13 +59,15 @@ public class PokedexView {
 		configureUIComponents();
 		configureListeners();
 		verPokemon(index);
-		frmPokedex.invalidate();
-		frmPokedex.validate();
-		frmPokedex.repaint();
 	}
+	
+	/**
+	 * Componentes del view
+	 */
 
 	private void configureUIComponents() {
 		frmPokedex = new JFrame();
+		frmPokedex.getContentPane().setBackground(new Color(153, 204, 204));
 		frmPokedex.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(PokedexView.class.getResource("/image/icono app.png")));
 		frmPokedex.setTitle("Pokedex");
@@ -78,10 +80,10 @@ public class PokedexView {
 		btnCerrarSesion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnCerrarSesion);
 
-		btnAnadir = new JButton("A\u00F1adir");
-		btnAnadir.setBounds(517, 610, 103, 23);
-		btnAnadir.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		frmPokedex.getContentPane().add(btnAnadir);
+		btnCrear = new JButton("A\u00F1adir");
+		btnCrear.setBounds(517, 610, 103, 23);
+		btnCrear.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		frmPokedex.getContentPane().add(btnCrear);
 
 		btnModificar = new JButton("Modificar");
 		btnModificar.setBounds(630, 610, 103, 23);
@@ -162,59 +164,56 @@ public class PokedexView {
 		lblVerTipo.setFont(new Font("Verdana", Font.PLAIN, 15));
 		lblVerTipo.setBounds(34, 194, 81, 20);
 		frmPokedex.getContentPane().add(lblVerTipo);
-		
+
 		lblFoto = new JLabel("");
 		lblFoto.setBounds(258, 145, 498, 439);
 		frmPokedex.getContentPane().add(lblFoto);
-		
-		
+
 	}
+	
+	/**
+	 * Acciones de los botones del view
+	 */
 
 	private void configureListeners() {
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmPokedex.dispose();
-				parent.setVisible(true);
+				new LoginView();
 			}
 		});
 
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Comprueba si la array está vacia
-		        if (Almacen.pokemon.isEmpty()) {
-		            JOptionPane.showMessageDialog(frmPokedex, "No existen pokemons para borrar");
-		        } else {
-		            // Elimina el pokemon del array list y muestra el pokemon anterior
-		            Almacen.pokemon.remove(index);
-		            JOptionPane.showMessageDialog(frmPokedex, lblNombrePokemon.getText() + " se ha eliminado de la pokedex");
 
-		            // Comprueba si es el primer pokemon de la lista
-		            if (index == 0) {
-		                verPokemon(0);
-		            } else {
-		                verPokemon(--index);
-		            }
-		        }
+				Almacen.pokemon.remove(index);
+
+				if (index == 0) {
+					verPokemon(0);
+				} else {
+					verPokemon(--index);
+				}
 			}
+
 		});
 
-		btnAnadir.addActionListener(new ActionListener() {
+		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmPokedex.setVisible(false);
-				new CrearView(frmPokedex);
+				new CrearView();
 			}
 		});
 
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmPokedex.setVisible(false);
-				new ModificarView(frmPokedex);
+				new ModificarView();
 			}
 		});
 
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					verPokemon(++index);
+				verPokemon(++index);
 			}
 		});
 
@@ -224,37 +223,71 @@ public class PokedexView {
 			}
 		});
 	}
+	
+	/**
+	 * Te dice cual es la posicion que se encuentra el pokemon en el array list
+	 * @return Posicion del pokemon seleccionado
+	 */
+
+	public static int getIndex() {
+
+		return index;
+	}
+	
+	/**
+	 * Muestra el pokemon seleccionado
+	 * @param index Posicion del pokemon seleccionado
+	 */ 
 
 	private void verPokemon(int index) {
-		
-		if (index == 0) {
-			btnAtras.setVisible(false);
-		} else {
-			btnAtras.setVisible(true);
-		}
-		
-		if (index == Almacen.pokemon.size() - 1) {
-			btnSiguiente.setVisible(false);
-		} else {
-			btnSiguiente.setVisible(true);
-		}
-		
-		lblVerTipo.setText(Almacen.pokemon.get(index).getTipo() + "");
-		lblNumero.setText(("Nº " + Almacen.pokemon.get(index).getNumero() + ""));
-		lblNombrePokemon.setText(Almacen.pokemon.get(index).getNombre());
-		lblVerPeso.setText(Almacen.pokemon.get(index).getPeso() + "");
-		lblVerAltura.setText(Almacen.pokemon.get(index).getAltura() + "");
-		lblVerHabilidad.setText(Almacen.pokemon.get(index).getHabilidad());
-		lblVerCategoria.setText(Almacen.pokemon.get(index).getCategoria());
-		
-		BufferedImage img;
-		try {
-            img = ImageIO.read(new URL(Almacen.pokemon.get(index).getUrl()));
-            lblFoto.setIcon(new javax.swing.ImageIcon(img));
-        } catch (Exception e2) {
-            lblFoto.setVisible(false);
-            //lblTituloError.setText("ERROR: No existe una imagen");
-        }
 
+		if (!Almacen.pokemon.isEmpty()) { //Si el array list de pokemon no esta vacio
+
+			if (index == 0) { 
+				btnAtras.setVisible(false); //Oculta el boton atras de la view
+			} else {
+				btnAtras.setVisible(true);
+			}
+
+			if (index == Almacen.pokemon.size() - 1) { //Cuando el index es la ultima posicion del array list
+				btnSiguiente.setVisible(false); //Oculta el boton siguiente de la view
+			} else {
+				btnSiguiente.setVisible(true);
+			}
+
+			lblVerTipo.setText(Almacen.pokemon.get(index).getTipo() + "");
+			lblNumero.setText(("Nº " + Almacen.pokemon.get(index).getNumero() + ""));
+			lblNombrePokemon.setText(Almacen.pokemon.get(index).getNombre());
+			lblVerPeso.setText(Almacen.pokemon.get(index).getPeso() + "");
+			lblVerAltura.setText(Almacen.pokemon.get(index).getAltura() + "");
+			lblVerHabilidad.setText(Almacen.pokemon.get(index).getHabilidad());
+			lblVerCategoria.setText(Almacen.pokemon.get(index).getCategoria());
+
+			//Sirve para inserta la imagen de los pokemon a través de una url
+			BufferedImage img;
+			try {
+				img = ImageIO.read(new URL(Almacen.pokemon.get(index).getUrl()));
+				lblFoto.setIcon(new javax.swing.ImageIcon(img));
+			} catch (Exception e2) {
+				lblFoto.setVisible(false);
+			}
+		} else {
+			
+			//Oculta los botones
+			btnModificar.setVisible(false);
+			btnEliminar.setVisible(false);
+
+			//Te muestra la view con los campos vacios
+			lblVerTipo.setText("");
+			lblNumero.setText("Nº");
+			lblNombrePokemon.setText("");
+			lblVerPeso.setText("");
+			lblVerAltura.setText("");
+			lblVerHabilidad.setText("");
+			lblVerCategoria.setText("");
+			lblFoto.setVisible(false);
+
+		}
 	}
+
 }

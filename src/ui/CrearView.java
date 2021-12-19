@@ -3,10 +3,10 @@ package ui;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import utils.Almacen;
 import java.awt.event.ActionListener;
@@ -16,19 +16,19 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import enums.Tipo;
 import models.Pokemon;
+import java.awt.Color;
 
 public class CrearView {
 
+	//Propiedades
 	private JFrame frmCrear;
 	private JButton btnSalir;
 	private JButton btnGuardar;
-	private JFrame parent;
 	private JLabel lblTipo;
 	private JLabel lblPeso;
 	private JLabel lblAltura;
 	private JLabel lblCategoria;
 	private JLabel lblHabilidad;
-	private JLabel lblFondo;
 	private JTextField textPeso;
 	private JTextField textAltura;
 	private JTextField textHabilidad;
@@ -45,8 +45,7 @@ public class CrearView {
 	/**
 	 * Create the application.
 	 */
-	public CrearView(JFrame parent) {
-		this.parent = parent;
+	public CrearView() {
 		initialize();
 		this.frmCrear.setVisible(true);
 
@@ -60,8 +59,13 @@ public class CrearView {
 		configureListeners();
 	}
 
+	/**
+	 * Componentes del view
+	 */
+
 	private void configureUIComponents() {
 		frmCrear = new JFrame();
+		frmCrear.getContentPane().setBackground(new Color(153, 204, 204));
 		frmCrear.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(PokedexView.class.getResource("/image/icono app.png")));
 		frmCrear.setTitle("Creacion");
@@ -103,11 +107,6 @@ public class CrearView {
 		lblHabilidad.setBounds(34, 433, 81, 23);
 		lblHabilidad.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmCrear.getContentPane().add(lblHabilidad);
-
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(PokedexView.class.getResource("/image/fondoblanco.jpg")));
-		lblFondo.setBounds(10, 11, 604, 23);
-		frmCrear.getContentPane().add(lblFondo);
 
 		textPeso = new JTextField();
 		textPeso.setFont(new Font("Verdana", Font.PLAIN, 15));
@@ -179,30 +178,52 @@ public class CrearView {
 
 	}
 
+	/**
+	 * Acciones de los botones del view
+	 */
+
 	private void configureListeners() {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmCrear.dispose();
-				parent.setVisible(true);
+				frmCrear.dispose(); //Elimina la view Crear
+				new PokedexView(); //Te abre una nueva view de pokedex
 			}
 		});
 
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				crearPokemon();
-
-				frmCrear.dispose();
-				parent.setVisible(true);
+				frmCrear.dispose(); 
+				new PokedexView(); 
 			}
 		});
 	}
 
+	/**
+	 * Crea un pokemon nuevo y la agrega en la pokedex
+	 */
+
 	private void crearPokemon() {
+		boolean repetido = false;
 
-		Almacen.pokemon.add(new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
-				Tipo.valueOf(Tipo.class, cbTipo.getSelectedItem().toString()), Double.parseDouble(textPeso.getText()),
-				Double.parseDouble(textAltura.getText()), textCategoria.getText(), textHabilidad.getText(),
-				textUrl.getText()));
+		for (Pokemon pokemon : Almacen.pokemon) {
+			if (pokemon.getNombre().equalsIgnoreCase(textNombre.getText())
+					|| pokemon.getNumero() == Integer.parseInt(textNumero.getText())) { // Si el nombre o el numero
+																						// coincide con uno de los
+																						// pokemon ya creados en el
+																						// array list
+				repetido = true;
+			}
+		}
 
+		if (!repetido) { //Si repetido es false
+			//Crea un pokemon nuevo y lo añade al array list pokemon
+			Almacen.pokemon.add(new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
+					Tipo.valueOf(Tipo.class, cbTipo.getSelectedItem().toString()),
+					Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
+					textCategoria.getText(), textHabilidad.getText(), textUrl.getText()));
+		} else {
+			JOptionPane.showMessageDialog(frmCrear, "El pokemon ya esta registrado en la pokedex");
+		}
 	}
 }

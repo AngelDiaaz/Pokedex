@@ -94,14 +94,5 @@ public class Pokemon {
 		this.habilidad = habilidad;
 	}
 
-	@Override
-	public String toString() {
-		return "Pokemon [numero=" + numero + ", nombre=" + nombre + ", tipo=" + tipo + ", altura=" + altura + ", peso="
-				+ peso + ", categoria=" + categoria + ", habilidad=" + habilidad + "]";
-	}
-	
-
-	
-	
-	
+		
 }

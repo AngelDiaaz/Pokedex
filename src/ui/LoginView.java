@@ -18,9 +18,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
 
 public class LoginView {
 
+	//Propiedades
 	private JFrame frmLogin;
 	private JLabel lblTitulo;
 	private JTextField tfUsuario;
@@ -45,9 +47,15 @@ public class LoginView {
 	 */
 	private void initialize() {
 		frmLogin = new JFrame();
+		frmLogin.getContentPane().setBackground(new Color(153, 204, 204));
+		frmLogin.getContentPane().setForeground(Color.WHITE);
 		configureUIComponents();
 		configureListeners();
 	}
+	
+	/**
+	 * Componentes del view
+	 */
 
 	private void configureUIComponents() {
 		frmLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(LoginView.class.getResource("/image/icono app.png")));
@@ -99,6 +107,10 @@ public class LoginView {
 		btnSalir.setBounds(35, 214, 107, 23);
 		frmLogin.getContentPane().add(btnSalir);
 	}
+	
+	/**
+	 * Acciones de los botones del view
+	 */
 
 	private void configureListeners() {
 		btnEntrar.addActionListener(new ActionListener() {
@@ -126,6 +138,10 @@ public class LoginView {
 			}
 		});
 	}
+	
+	/**
+	 * Comprueba si el usuario y la contraseña coincide con lo que tenemos registrado
+	 */
 
 	private void comprobarLogin() {
 		String username = tfUsuario.getText();
@@ -142,9 +158,8 @@ public class LoginView {
 		}
 
 		if (encontrado) { // Si las credenciales son correctas
-			//JOptionPane.showMessageDialog(btnEntrar, "Login correcto");
 			frmLogin.setVisible(false);
-			new PokedexView(null);
+			new PokedexView();
 		} else {
 			JOptionPane.showMessageDialog(btnEntrar, "Login incorrecto");
 		}

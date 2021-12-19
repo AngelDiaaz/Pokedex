@@ -18,9 +18,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
 
 public class RegistroView {
-
+	
+	//Propiedades
 	private JFrame frmRegistro;
 	private JTextField textUsuario;
 	private JPasswordField pfPassword;
@@ -51,8 +53,14 @@ public class RegistroView {
 		configureListeners();
 	}
 	
+	/**
+	 * Componentes del view
+	 */
+	
 	private void configureUIComponents() {
 		frmRegistro = new JFrame();
+		frmRegistro.getContentPane().setBackground(new Color(153, 204, 204));
+		frmRegistro.getContentPane().setForeground(Color.BLACK);
 		frmRegistro.setIconImage(Toolkit.getDefaultToolkit().getImage(RegistroView.class.getResource("/image/icono app.png")));
 		frmRegistro.setTitle("Registro");
 		frmRegistro.setBounds(100, 100, 450, 300);
@@ -109,6 +117,10 @@ public class RegistroView {
 		frmRegistro.setVisible(true);
 	}
 	
+	/**
+	 * Acciones de los botones del view
+	 */
+	
 	private void configureListeners() {
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -132,13 +144,16 @@ public class RegistroView {
 		});
 	}
 	
+	/**
+	 * Comprueba que las credenciales que has metido son correctas, comprobando que las contraseñas son iguales en los dos campos
+	 */
+	
 	private void registrarse() {
 		String passwd = new String(pfPassword.getPassword());
 		String repetir = new String (pfPasswordRepetir.getPassword());
 		if(passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) { //Cuando las constrañas coincidan y no haya ningun campo vacio
 			Usuario usuario = new Usuario(textUsuario.getText(),passwd);
 			Almacen.usuarios.add(usuario);
-			//frmRegistro.setVisible(false);
 			frmRegistro.dispose();
 			new LoginView();
 		} else if (!passwd.equals(repetir)){
