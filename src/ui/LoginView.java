@@ -29,6 +29,7 @@ public class LoginView {
 	private JButton btnEntrar;
 	private JPasswordField pfPassword;
 	private JButton btnRegistro;
+	private JButton btnSalir;
 
 	/**
 	 * Create the application.
@@ -80,7 +81,7 @@ public class LoginView {
 		btnEntrar = new JButton("Entrar");
 
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnEntrar.setBounds(250, 212, 107, 23);
+		btnEntrar.setBounds(306, 213, 107, 23);
 		frmLogin.getContentPane().add(btnEntrar);
 
 		pfPassword = new JPasswordField();
@@ -90,8 +91,13 @@ public class LoginView {
 		
 		btnRegistro = new JButton("Registrarse");
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistro.setBounds(74, 213, 107, 23);
+		btnRegistro.setBounds(183, 213, 107, 23);
 		frmLogin.getContentPane().add(btnRegistro);
+		
+		btnSalir = new JButton("Salir");
+		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnSalir.setBounds(35, 214, 107, 23);
+		frmLogin.getContentPane().add(btnSalir);
 	}
 
 	private void configureListeners() {
@@ -111,10 +117,14 @@ public class LoginView {
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmLogin.setVisible(false); //Te hace invisible la pestaña del login
-				new RegistroView(); // Te muestra la pestaña de registro
+				new RegistroView(frmLogin); // Te muestra la pestaña de registro
 			}
 		});
-
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 	}
 
 	private void comprobarLogin() {
@@ -134,7 +144,7 @@ public class LoginView {
 		if (encontrado) { // Si las credenciales son correctas
 			//JOptionPane.showMessageDialog(btnEntrar, "Login correcto");
 			frmLogin.setVisible(false);
-			new TallerView();
+			new PokedexView(null);
 		} else {
 			JOptionPane.showMessageDialog(btnEntrar, "Login incorrecto");
 		}

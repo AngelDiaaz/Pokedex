@@ -30,12 +30,16 @@ public class RegistroView {
 	private JLabel lblNewPassword;
 	private JLabel lblNewPasswordRepetir;
 	private JButton btnRegistro;
+	private JButton btnInicioSesion;
+	private JFrame parent;
 	
 
 	/**
 	 * Create the application.
+	 * @param frmLogin 
 	 */
-	public RegistroView() {
+	public RegistroView(JFrame parent) {
+		this.parent = parent;
 		initialize();
 	}
 
@@ -95,8 +99,13 @@ public class RegistroView {
 		
 		btnRegistro = new JButton("Registrarse");
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistro.setBounds(266, 216, 109, 23);
+		btnRegistro.setBounds(256, 217, 109, 23);
 		frmRegistro.getContentPane().add(btnRegistro);
+		
+		btnInicioSesion = new JButton("Volver");
+		btnInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnInicioSesion.setBounds(76, 217, 109, 23);
+		frmRegistro.getContentPane().add(btnInicioSesion);
 		frmRegistro.setVisible(true);
 	}
 	
@@ -115,6 +124,12 @@ public class RegistroView {
 				}
 			}
 		});
+		btnInicioSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmRegistro.dispose();
+				parent.setVisible(true);
+			}
+		});
 	}
 	
 	private void registrarse() {
@@ -126,8 +141,14 @@ public class RegistroView {
 			//frmRegistro.setVisible(false);
 			frmRegistro.dispose();
 			new LoginView();
-		} else {
+		} else if (!passwd.equals(repetir)){
 			JOptionPane.showMessageDialog(btnRegistro, "La contraseña no coincide, vuelvelo a intentar");
+		} else if (textUsuario.getText().equals("")){
+			JOptionPane.showMessageDialog(btnRegistro, "Campo usuario sin rellenar, rellenelo por favor");
+		} else if (passwd.equals("")) {
+			JOptionPane.showMessageDialog(btnRegistro, "Campo contrseña sin rellenar, rellenelo por favor");
+		} else if (repetir.equals("")) {
+			JOptionPane.showMessageDialog(btnRegistro, "Campo repetir contrseña sin rellenar, rellenelo por favor");
 		}
 	}
 }

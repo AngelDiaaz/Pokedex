@@ -12,10 +12,11 @@ public class Pokemon {
 	protected double peso;
 	protected String categoria;
 	protected String habilidad;
+	protected String url;
 	
 	//Constructores
 	public Pokemon(int numero, String nombre, Tipo tipo, double altura, double peso, String categoria,
-			String habilidad) {
+			String habilidad, String url) {
 		super();
 		this.numero = numero;
 		this.nombre = nombre;
@@ -24,6 +25,7 @@ public class Pokemon {
 		this.peso = peso;
 		this.categoria = categoria;
 		this.habilidad = habilidad;
+		this.url = url;
 			}
 	
 	//Getters y setters
@@ -54,6 +56,42 @@ public class Pokemon {
 
 	public String getHabilidad() {
 		return habilidad;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setAltura(double altura) {
+		this.altura = altura;
+	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public void setHabilidad(String habilidad) {
+		this.habilidad = habilidad;
 	}
 
 	@Override
