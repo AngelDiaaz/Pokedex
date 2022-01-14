@@ -19,6 +19,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class LoginView {
 
@@ -64,9 +65,10 @@ public class LoginView {
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 
-		lblTitulo = new JLabel("POKEDEX");
+		lblTitulo = new JLabel("");
+		lblTitulo.setIcon(new ImageIcon(LoginView.class.getResource("/image/login pokemon.png")));
 		lblTitulo.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 30));
-		lblTitulo.setBounds(125, 26, 180, 39);
+		lblTitulo.setBounds(10, 11, 414, 90);
 		frmLogin.getContentPane().add(lblTitulo);
 
 		lblUsuario = new JLabel("Usuario");
