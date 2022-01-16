@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import dao.UsuarioDAO;
 import models.Usuario;
 import utils.Almacen;
 
@@ -34,6 +35,7 @@ public class RegistroView {
 	private JButton btnRegistro;
 	private JButton btnInicioSesion;
 	private JFrame parent;
+	private UsuarioDAO usuarioDAO;
 	
 
 	/**
@@ -151,9 +153,11 @@ public class RegistroView {
 	private void registrarse() {
 		String passwd = new String(pfPassword.getPassword());
 		String repetir = new String (pfPasswordRepetir.getPassword());
+		
+		usuarioDAO.registrar(repetir, passwd);
+		
 		if(passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) { //Cuando las constrañas coincidan y no haya ningun campo vacio
-			Usuario usuario = new Usuario(textUsuario.getText(),passwd);
-			Almacen.usuarios.add(usuario);
+			usuarioDAO.registrar(textUsuario.getText(), passwd);
 			frmRegistro.dispose();
 			new LoginView();
 		} else if (!passwd.equals(repetir)){
@@ -161,9 +165,9 @@ public class RegistroView {
 		} else if (textUsuario.getText().equals("")){
 			JOptionPane.showMessageDialog(btnRegistro, "Campo usuario sin rellenar, rellenelo por favor");
 		} else if (passwd.equals("")) {
-			JOptionPane.showMessageDialog(btnRegistro, "Campo contrseña sin rellenar, rellenelo por favor");
+			JOptionPane.showMessageDialog(btnRegistro, "Campo contraseña sin rellenar, rellenelo por favor");
 		} else if (repetir.equals("")) {
-			JOptionPane.showMessageDialog(btnRegistro, "Campo repetir contrseña sin rellenar, rellenelo por favor");
+			JOptionPane.showMessageDialog(btnRegistro, "Campo repetir contraseña sin rellenar, rellenelo por favor");
 		}
 	}
 }

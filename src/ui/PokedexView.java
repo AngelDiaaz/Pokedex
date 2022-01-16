@@ -1,6 +1,6 @@
 package ui;
 
-import javax.swing.JFrame;
+import javax.swing.JFrame; 
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -9,13 +9,14 @@ import java.net.URL;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
+import dao.PokemonDAO;
+
 import java.awt.image.BufferedImage;
 
 import utils.Almacen;
 
 import javax.imageio.ImageIO;
 import java.awt.Color;
-import java.awt.Window.Type;
 
 public class PokedexView {
 
@@ -41,6 +42,7 @@ public class PokedexView {
 	private JLabel lblVerTipo;
 	private static int index = 0;
 	private JLabel lblFoto;
+	private PokemonDAO pokemonDAO;
 
 	/**
 	 * Create the application.
@@ -262,6 +264,8 @@ public class PokedexView {
 			lblVerAltura.setText(Almacen.pokemon.get(index).getAltura() + "");
 			lblVerHabilidad.setText(Almacen.pokemon.get(index).getHabilidad());
 			lblVerCategoria.setText(Almacen.pokemon.get(index).getCategoria());
+			
+			//pokemonDAO.infoPokemon();
 
 			//Sirve para inserta la imagen de los pokemon a través de una url
 			BufferedImage img;

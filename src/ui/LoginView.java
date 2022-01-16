@@ -1,6 +1,6 @@
 package ui;
 
-import javax.swing.JFrame;
+import javax.swing.JFrame; 
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -8,8 +8,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-import models.Usuario;
-import utils.Almacen;
+import dao.UsuarioDAO;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -33,6 +32,7 @@ public class LoginView {
 	private JPasswordField pfPassword;
 	private JButton btnRegistro;
 	private JButton btnSalir;
+	private UsuarioDAO usuarioDAO;
 
 	/**
 	 * Create the application.
@@ -40,6 +40,7 @@ public class LoginView {
 	public LoginView() {
 		initialize();
 		this.frmLogin.setVisible(true);
+		usuarioDAO = new UsuarioDAO();
 
 	}
 
@@ -146,20 +147,10 @@ public class LoginView {
 	 */
 
 	private void comprobarLogin() {
-		String username = tfUsuario.getText();
+		String usuario = tfUsuario.getText();
 		String password = new String(pfPassword.getPassword());
-		boolean encontrado = false;
-
-		for (Usuario usu : Almacen.usuarios) { // Recorre el array list usuarios
-			if (username.equals(usu.getUsuario()) && password.equals(usu.getPassword())) { // Si el usuario coincide con
-																							// la contraseña y el
-																							// nombre
-				encontrado = true;
-				break;
-			}
-		}
-
-		if (encontrado) { // Si las credenciales son correctas
+		boolean loginCorrecto = usuarioDAO.login(usuario, password);
+		if (loginCorrecto) {
 			frmLogin.setVisible(false);
 			new PokedexView();
 		} else {

@@ -2,7 +2,6 @@ package mainapp;
 
 import enums.Tipo;
 import models.Pokemon;
-import models.Usuario;
 import ui.LoginView;
 import utils.Almacen;
 
@@ -17,10 +16,6 @@ public class MainApp {
 				"https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png"));
 		Almacen.pokemon.add(new Pokemon(136, "Flareon", Tipo.Fuego, 0.9, 25, "Llama", "Absorbe Fuego",
 				"https://assets.pokemon.com/assets/cms2/img/pokedex/full/136.png"));
-
-		//Añadimos dos usuario al array list de usuarios
-		Almacen.usuarios.add(new Usuario("pepe", "1"));
-		Almacen.usuarios.add(new Usuario("juan", "9"));
 
 		new LoginView(); //Llamamo a la funcion login view para que se nos abra el programa
 	}
