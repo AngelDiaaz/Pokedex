@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.Font;
+import java.awt.Font; 
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -8,8 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import utils.Almacen;
+import dao.PokemonDAO;
+import models.Pokemon;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class AñadirView {
@@ -26,12 +28,17 @@ public class AñadirView {
 	private JLabel lblHabilidad;
 	private JLabel lblNumero;
 	private JLabel lblFondo;
+	private PokemonDAO pokemonDAO;
+	private ArrayList<Pokemon> pokemons;
+	
 
 	/**
 	 * Create the application.
 	 */
 	public AñadirView(JFrame parent) {
 		this.parent = parent;
+		this.pokemonDAO = new PokemonDAO();
+		this.pokemons = pokemonDAO.getAll();
 		initialize();
 		this.frmAñadir.setVisible(true);
 
@@ -63,7 +70,7 @@ public class AñadirView {
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmAñadir.getContentPane().add(btnGuardar);
 		
-		lblNombrePokemon = new JLabel(String.valueOf(Almacen.pokemon.get(0).getNombre()));
+		lblNombrePokemon = new JLabel(String.valueOf(pokemons.get(0).getNombre()));
 		lblNombrePokemon.setBounds(359, 97, 199, 53);
 		lblNombrePokemon.setFont(new Font("Verdana", Font.BOLD, 20));
 		frmAñadir.getContentPane().add(lblNombrePokemon);
@@ -93,7 +100,7 @@ public class AñadirView {
 		lblHabilidad.setFont(new Font("Verdana", Font.BOLD, 14));
 		frmAñadir.getContentPane().add(lblHabilidad);
 		
-		lblNumero = new JLabel("Nº " + String.valueOf(Almacen.pokemon.get(0).getNumero()));
+		lblNumero = new JLabel("Nº " + String.valueOf(pokemons.get(0).getNumero()));
 		lblNumero.setBounds(258, 29, 95, 34);
 		lblNumero.setFont(new Font("Verdana", Font.BOLD, 20));
 		frmAñadir.getContentPane().add(lblNumero);

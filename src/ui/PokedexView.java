@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import dao.PokemonDAO;
 import models.Pokemon;
@@ -195,13 +196,23 @@ public class PokedexView {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				pokemons.remove(index);
+				int resp=JOptionPane.showConfirmDialog(null,"¿Quieres eliminar este pokemon?");
+			      if (JOptionPane.OK_OPTION == resp){
+			    	  System.out.println("Selecciona opción Afirmativa");
+					pokemonDAO.eliminar(pokemons.get(index));
+					frmPokedex.dispose();
+					new PokedexView();
 
-				if (index == 0) {
-					verPokemon(0);
-				} else {
-					verPokemon(--index);
-				}
+				 }
+			      else{
+			    	  System.out.println("No selecciona una opción afirmativa");
+			   }
+
+//				if (index == 0) {
+//					verPokemon(0);
+//				} else {
+//					verPokemon(--index);
+//				}
 			}
 
 		});

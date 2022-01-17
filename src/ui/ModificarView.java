@@ -1,9 +1,10 @@
 package ui;
 
-import java.awt.Font;
+import java.awt.Font; 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -12,9 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import dao.PokemonDAO;
 import enums.Tipo;
 import models.Pokemon;
-import utils.Almacen;
 import java.awt.Color;
 
 public class ModificarView {
@@ -40,11 +41,15 @@ public class ModificarView {
 	private JTextField textNumero;
 	private JComboBox cbTipo;
 	private JLabel lblTitulo;
+	private PokemonDAO pokemonDAO;
+	private ArrayList<Pokemon> pokemons;
 
 	/**
 	 * Create the application.
 	 */
 	public ModificarView() {
+		this.pokemonDAO = new PokemonDAO();
+		this.pokemons = pokemonDAO.getAll();
 		initialize();
 		this.frmModificar.setVisible(true);
 	}
@@ -207,14 +212,14 @@ public class ModificarView {
 
 	private void verPokemon(int index) {
 
-		cbTipo.setSelectedItem(Almacen.pokemon.get(index).getTipo());
-		textNumero.setText((Almacen.pokemon.get(index).getNumero() + ""));
-		textNombre.setText(Almacen.pokemon.get(index).getNombre());
-		textPeso.setText(Almacen.pokemon.get(index).getPeso() + "");
-		textAltura.setText(Almacen.pokemon.get(index).getAltura() + "");
-		textHabilidad.setText(Almacen.pokemon.get(index).getHabilidad());
-		textCategoria.setText(Almacen.pokemon.get(index).getCategoria());
-		textUrl.setText(Almacen.pokemon.get(index).getUrl());
+		cbTipo.setSelectedItem(pokemons.get(index).getTipo());
+		textNumero.setText((pokemons.get(index).getNumero() + ""));
+		textNombre.setText(pokemons.get(index).getNombre());
+		textPeso.setText(pokemons.get(index).getPeso() + "");
+		textAltura.setText(pokemons.get(index).getAltura() + "");
+		textHabilidad.setText(pokemons.get(index).getHabilidad());
+		textCategoria.setText(pokemons.get(index).getCategoria());
+		textUrl.setText(pokemons.get(index).getUrl());
 
 	}
 	
@@ -225,7 +230,7 @@ public class ModificarView {
 
 	private void cambiar(int index) {
 		
-		Almacen.pokemon.set(index,
+		pokemons.set(index,
 				new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
 						Tipo.valueOf(Tipo.class, cbTipo.getSelectedItem().toString()),
 						Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),

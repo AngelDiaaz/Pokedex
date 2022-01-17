@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.Font;
+import java.awt.Font; 
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
@@ -8,10 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import utils.Almacen;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+
+import dao.PokemonDAO;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import enums.Tipo;
@@ -41,11 +44,15 @@ public class CrearView {
 	private JLabel lblNumero;
 	private JComboBox cbTipo;
 	private JLabel lblCrear;
+	private PokemonDAO pokemonDAO;
+	private ArrayList<Pokemon> pokemons;
 
 	/**
 	 * Create the application.
 	 */
 	public CrearView() {
+		this.pokemonDAO = new PokemonDAO();
+		this.pokemons = pokemonDAO.getAll();
 		initialize();
 		this.frmCrear.setVisible(true);
 
@@ -208,7 +215,7 @@ public class CrearView {
 	private void crearPokemon() {
 		boolean repetido = false;
 
-		for (Pokemon pokemon : Almacen.pokemon) {
+		for (Pokemon pokemon : pokemons) {
 			if (pokemon.getNombre().equalsIgnoreCase(textNombre.getText())
 					|| pokemon.getNumero() == Integer.parseInt(textNumero.getText())) { // Si el nombre o el numero
 																						// coincide con uno de los
@@ -220,10 +227,16 @@ public class CrearView {
 
 		if (!repetido) { //Si repetido es false
 			//Crea un pokemon nuevo y lo añade al array list pokemon
-			Almacen.pokemon.add(new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
-					Tipo.valueOf(Tipo.class, cbTipo.getSelectedItem().toString()),
-					Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
-					textCategoria.getText(), textHabilidad.getText(), textUrl.getText()));
+//			pokemons.add(new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
+//					Tipo.valueOf(Tipo.class, cbTipo.getSelectedItem().toString()),
+//					Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
+//					textCategoria.getText(), textHabilidad.getText(), textUrl.getText()));
+			
+			Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
+					"", Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
+					textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
+			pokemonDAO.registrar(a);
+			
 		} else {
 			JOptionPane.showMessageDialog(frmCrear, "El pokemon ya esta registrado en la pokedex");
 		}
