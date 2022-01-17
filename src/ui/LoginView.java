@@ -9,6 +9,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import dao.UsuarioDAO;
+import models.Usuario;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -90,6 +91,7 @@ public class LoginView {
 		frmLogin.getContentPane().add(lblPassword);
 
 		btnEntrar = new JButton("Entrar");
+		btnEntrar.setBackground(new Color(102, 204, 0));
 
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnEntrar.setBounds(306, 213, 107, 23);
@@ -101,11 +103,13 @@ public class LoginView {
 		frmLogin.getContentPane().add(pfPassword);
 		
 		btnRegistro = new JButton("Registrarse");
+		btnRegistro.setBackground(new Color(255, 204, 51));
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnRegistro.setBounds(183, 213, 107, 23);
 		frmLogin.getContentPane().add(btnRegistro);
 		
 		btnSalir = new JButton("Salir");
+		btnSalir.setBackground(new Color(255, 102, 102));
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnSalir.setBounds(35, 214, 107, 23);
 		frmLogin.getContentPane().add(btnSalir);
@@ -149,7 +153,7 @@ public class LoginView {
 	private void comprobarLogin() {
 		String usuario = tfUsuario.getText();
 		String password = new String(pfPassword.getPassword());
-		boolean loginCorrecto = usuarioDAO.login(usuario, password);
+		boolean loginCorrecto = usuarioDAO.login(new Usuario(usuario,password));
 		if (loginCorrecto) {
 			frmLogin.setVisible(false);
 			new PokedexView();

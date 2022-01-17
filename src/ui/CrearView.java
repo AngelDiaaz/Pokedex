@@ -74,11 +74,13 @@ public class CrearView {
 		frmCrear.getContentPane().setLayout(null);
 
 		btnSalir = new JButton("Salir");
+		btnSalir.setBackground(new Color(255, 204, 51));
 		btnSalir.setBounds(50, 610, 129, 23);
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmCrear.getContentPane().add(btnSalir);
 
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.setBackground(new Color(102, 204, 0));
 		btnGuardar.setBounds(550, 610, 147, 23);
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmCrear.getContentPane().add(btnGuardar);

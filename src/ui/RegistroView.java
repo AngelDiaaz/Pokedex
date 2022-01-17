@@ -1,6 +1,6 @@
 package ui;
 
-import javax.swing.JFrame;
+import javax.swing.JFrame; 
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -10,7 +10,6 @@ import javax.swing.SwingConstants;
 
 import dao.UsuarioDAO;
 import models.Usuario;
-import utils.Almacen;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -44,6 +43,7 @@ public class RegistroView {
 	 */
 	public RegistroView(JFrame parent) {
 		this.parent = parent;
+		this.usuarioDAO = new UsuarioDAO();
 		initialize();
 	}
 
@@ -108,11 +108,13 @@ public class RegistroView {
 		frmRegistro.getContentPane().add(pfPasswordRepetir);
 		
 		btnRegistro = new JButton("Registrarse");
+		btnRegistro.setBackground(new Color(102, 204, 0));
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnRegistro.setBounds(256, 217, 109, 23);
 		frmRegistro.getContentPane().add(btnRegistro);
 		
 		btnInicioSesion = new JButton("Volver");
+		btnInicioSesion.setBackground(new Color(255, 204, 51));
 		btnInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnInicioSesion.setBounds(76, 217, 109, 23);
 		frmRegistro.getContentPane().add(btnInicioSesion);
@@ -154,12 +156,12 @@ public class RegistroView {
 		String passwd = new String(pfPassword.getPassword());
 		String repetir = new String (pfPasswordRepetir.getPassword());
 		
-		usuarioDAO.registrar(repetir, passwd);
 		
 		if(passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) { //Cuando las constrañas coincidan y no haya ningun campo vacio
-			usuarioDAO.registrar(textUsuario.getText(), passwd);
+			usuarioDAO.registrar(new Usuario(textUsuario.getText(), passwd));
 			frmRegistro.dispose();
 			new LoginView();
+			
 		} else if (!passwd.equals(repetir)){
 			JOptionPane.showMessageDialog(btnRegistro, "La contraseña no coincide, vuelvelo a intentar");
 		} else if (textUsuario.getText().equals("")){

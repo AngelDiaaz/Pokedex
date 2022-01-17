@@ -1,19 +1,19 @@
 package ui;
 
-import javax.swing.JFrame; 
+import javax.swing.JFrame;
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
 import dao.PokemonDAO;
+import models.Pokemon;
 
 import java.awt.image.BufferedImage;
-
-import utils.Almacen;
 
 import javax.imageio.ImageIO;
 import java.awt.Color;
@@ -43,6 +43,7 @@ public class PokedexView {
 	private static int index = 0;
 	private JLabel lblFoto;
 	private PokemonDAO pokemonDAO;
+	private ArrayList<Pokemon> pokemons;
 
 	/**
 	 * Create the application.
@@ -50,6 +51,8 @@ public class PokedexView {
 	 * @param frmLogin
 	 */
 	public PokedexView() {
+		this.pokemonDAO = new PokemonDAO();
+		this.pokemons = pokemonDAO.getAll();
 		initialize();
 		frmPokedex.setVisible(true);
 	}
@@ -78,21 +81,25 @@ public class PokedexView {
 		frmPokedex.getContentPane().setLayout(null);
 
 		btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
+		btnCerrarSesion.setBackground(new Color(255, 204, 51));
 		btnCerrarSesion.setBounds(23, 610, 129, 23);
 		btnCerrarSesion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnCerrarSesion);
 
 		btnCrear = new JButton("A\u00F1adir");
+		btnCrear.setBackground(new Color(51, 153, 153));
 		btnCrear.setBounds(517, 610, 103, 23);
 		btnCrear.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnCrear);
 
 		btnModificar = new JButton("Modificar");
+		btnModificar.setBackground(new Color(51, 153, 204));
 		btnModificar.setBounds(630, 610, 103, 23);
 		btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnModificar);
 
 		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBackground(new Color(255, 102, 102));
 		btnEliminar.setBounds(403, 610, 103, 23);
 		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnEliminar);
@@ -188,7 +195,7 @@ public class PokedexView {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Almacen.pokemon.remove(index);
+				pokemons.remove(index);
 
 				if (index == 0) {
 					verPokemon(0);
@@ -215,13 +222,21 @@ public class PokedexView {
 
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				verPokemon(++index);
+				index++;
+				if(index == pokemons.size()) { //Cuando el index es la ultima posicion del array list
+					index = 0;
+				}
+				verPokemon(index);
 			}
 		});
 
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				verPokemon(--index);
+				index--;
+				if(index < 0) {
+					index = pokemons.size() - 1;
+				}
+				verPokemon(index);
 			}
 		});
 	}
@@ -243,34 +258,34 @@ public class PokedexView {
 
 	private void verPokemon(int index) {
 
-		if (!Almacen.pokemon.isEmpty()) { //Si el array list de pokemon no esta vacio
+		if (!pokemons.isEmpty()) { //Si el array list de pokemon no esta vacio
 
-			if (index == 0) { 
-				btnAtras.setVisible(false); //Oculta el boton atras de la view
-			} else {
-				btnAtras.setVisible(true);
-			}
+//			if (index == 0) { 
+//				btnAtras.setVisible(false); //Oculta el boton atras de la view
+//			} else {
+//				btnAtras.setVisible(true);
+//			}
+//
+//			if (index == pokemons.size() - 1) { //Cuando el index es la ultima posicion del array list
+//				btnSiguiente.setVisible(false); //Oculta el boton siguiente de la view
+//			} else {
+//				btnSiguiente.setVisible(true);
+//			}
 
-			if (index == Almacen.pokemon.size() - 1) { //Cuando el index es la ultima posicion del array list
-				btnSiguiente.setVisible(false); //Oculta el boton siguiente de la view
-			} else {
-				btnSiguiente.setVisible(true);
-			}
-
-			lblVerTipo.setText(Almacen.pokemon.get(index).getTipo() + "");
-			lblNumero.setText(("Nº " + Almacen.pokemon.get(index).getNumero() + ""));
-			lblNombrePokemon.setText(Almacen.pokemon.get(index).getNombre());
-			lblVerPeso.setText(Almacen.pokemon.get(index).getPeso() + "");
-			lblVerAltura.setText(Almacen.pokemon.get(index).getAltura() + "");
-			lblVerHabilidad.setText(Almacen.pokemon.get(index).getHabilidad());
-			lblVerCategoria.setText(Almacen.pokemon.get(index).getCategoria());
+			lblVerTipo.setText(pokemons.get(index).getTipo() + "");
+			lblNumero.setText(("Nº " + pokemons.get(index).getNumero() + ""));
+			lblNombrePokemon.setText(pokemons.get(index).getNombre());
+			lblVerPeso.setText(pokemons.get(index).getPeso() + "");
+			lblVerAltura.setText(pokemons.get(index).getAltura() + "");
+			lblVerHabilidad.setText(pokemons.get(index).getHabilidad());
+			lblVerCategoria.setText(pokemons.get(index).getCategoria());
 			
 			//pokemonDAO.infoPokemon();
 
 			//Sirve para inserta la imagen de los pokemon a través de una url
 			BufferedImage img;
 			try {
-				img = ImageIO.read(new URL(Almacen.pokemon.get(index).getUrl()));
+				img = ImageIO.read(new URL(pokemons.get(index).getUrl()));
 				lblFoto.setIcon(new javax.swing.ImageIcon(img));
 			} catch (Exception e2) {
 				lblFoto.setVisible(false);

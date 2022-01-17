@@ -13,6 +13,7 @@ public class Pokemon {
 	protected String categoria;
 	protected String habilidad;
 	protected String url;
+	protected String tipo2;
 	
 	//Constructores
 	public Pokemon(int numero, String nombre, Tipo tipo, double altura, double peso, String categoria,
@@ -28,6 +29,19 @@ public class Pokemon {
 		this.url = url;
 			}
 	
+	//Para que los tipos sean string y no enums
+	public Pokemon(int numero2, String nombre2, String tipo2, double altura2, double peso2, String categoria2,
+			String habilidad2, String url2) {
+		// TODO Auto-generated constructor stub
+		this.numero = numero2;
+		this.nombre = nombre2;
+		this.tipo2 = tipo2;
+		this.altura = altura2;
+		this.peso = peso2;
+		this.categoria = categoria2;
+		this.habilidad = habilidad2;
+		this.url = url2;
+	}
 	//Getters y setters
 
 	public int getNumero() {
@@ -92,6 +106,12 @@ public class Pokemon {
 
 	public void setHabilidad(String habilidad) {
 		this.habilidad = habilidad;
+	}
+
+	@Override
+	public String toString() {
+		return "Pokemon [numero=" + numero + ", nombre=" + nombre + ", tipo=" + tipo + ", altura=" + altura + ", peso="
+				+ peso + ", categoria=" + categoria + ", habilidad=" + habilidad + "]";
 	}
 
 		

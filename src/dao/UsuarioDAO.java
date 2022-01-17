@@ -1,13 +1,10 @@
 package dao;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.JOptionPane;
 
 import models.Usuario;
 
@@ -17,8 +14,6 @@ public class UsuarioDAO {
 	final String USER = "usuarios";
 	final String PASS = "usuario_pokemon";
 	final String QUERY = "SELECT usuario, password FROM usuarios";
-	private Usuario usuario;
-	private Connection con;
 
 	public void consulta() {
 		final String QUERY = "SELECT usuario, password FROM usuarios";
@@ -35,9 +30,9 @@ public class UsuarioDAO {
 		}
 	}
 
-	public boolean login(String usuario, String password) {
-		final String QUERY = "SELECT usuario, password FROM usuarios " + "where usuario = '" + usuario + "' and "
-				+ "password = '" + password + "'";
+	public boolean login(Usuario usuario) {
+		final String QUERY = "SELECT usuario, password FROM usuarios " + "where usuario = '" + usuario.getUsuario() + "' and "
+				+ "password = '" + usuario.getPassword() + "'";
 		try {
 			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			Statement stmt = conn.createStatement();
@@ -64,23 +59,19 @@ public class UsuarioDAO {
      
    
 
-	public void registrar(String usuario, String password) {
+	public void registrar(Usuario usuario) {
 		
-		 PreparedStatement ps;
-	        String sql;
-	        this.usuario.setUsuario(usuario);
-	        this.usuario.setPassword(password);
-	        try{
-	            con = getConexion();
-	            sql = "insert into usuarios(usuario, password) values('" + usuario + "', '" + password + "')";
-	            ps = con.prepareStatement(sql);
-	            ps.setString(1, this.usuario.getUsuario());
-	            ps.setString(2, this.usuario.getPassword());
-	            ps.executeUpdate();
-	            JOptionPane.showMessageDialog(null, "Se han insertado los datos");
-	        }catch(SQLException e){
-	            JOptionPane.showMessageDialog(null, "Error de conexión:" + e.getMessage());
-	        }
+		final String INSERT = "INSERT INTO usuarios (usuario,password)"
+				+ " VALUES ('"+ usuario.getUsuario() + "','"+ usuario.getPassword() +"');";
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(INSERT);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+
+
 
 }
