@@ -141,11 +141,13 @@ public class PokedexView {
 		frmPokedex.getContentPane().add(lblNumero);
 
 		btnSiguiente = new JButton(">");
+		btnSiguiente.setBackground(Color.WHITE);
 		btnSiguiente.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnSiguiente.setBounds(645, 23, 88, 69);
 		frmPokedex.getContentPane().add(btnSiguiente);
 
 		btnAtras = new JButton("<");
+		btnAtras.setBackground(Color.WHITE);
 		btnAtras.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnAtras.setBounds(23, 23, 82, 69);
 		frmPokedex.getContentPane().add(btnAtras);

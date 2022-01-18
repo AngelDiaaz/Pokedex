@@ -241,21 +241,29 @@ public class ModificarView {
 		// Compruebo que en el array list con los pokemons de la base de datos no está
 		// registrado ni el número ni el nombre del pokemon previamente
 		for (Pokemon pokemon : pokemons) {
-			if (pokemon.getNombre().equalsIgnoreCase(a.getNombre())) { // Una vez veo que coincide el nombre me aseguro,
-																		// que el numero también
-				for (Pokemon pokemon2 : pokemons) {
-					if (pokemon2.getNumero() == a.getNumero()) {
-						JOptionPane.showMessageDialog(frmModificar, "El número de pokemon " + a.getNumero()
-								+ " o el nombre de " + a.getNombre() + " ya está registrado en la pokedex");
-						correcto = false;
+
+			if (pokemon.getNumero() == a.getNumero()) { // Una vez veo que coincide el nombre me aseguro,
+														// que el numero también
+				if (pokemon.getNombre().equalsIgnoreCase(a.getNombre())) {
+
+					for (Pokemon pokemon2 : pokemons) {
+						if (pokemon2.getAltura() == a.getAltura()
+								&& pokemon2.getCategoria().equalsIgnoreCase(a.getCategoria())
+								&& pokemon2.getHabilidad().equalsIgnoreCase(a.getHabilidad())
+								&& pokemon2.getPeso() == a.getPeso()) {
+							JOptionPane.showMessageDialog(frmModificar, "El número de pokemon " + a.getNumero()
+									+ " o el nombre de " + a.getNombre() + " ya está registrado en la pokedex");
+							correcto = false;
+						}
 					}
 				}
 			}
 		}
-		if (correcto) { //Si no esta repetido el numero con otro pokemon o el nombre, modifico el pokemon
+		if (correcto) { // Si no esta repetido el numero con otro pokemon o el nombre, modifico el
+						// pokemon
 			pokemonDAO.modificar(a);
 			return true;
-		} else { //Sino elimino la pestaña y creo otra para poder modificarlo si quiero
+		} else { // Sino elimino la pestaña y creo otra para poder modificarlo si quiero
 			frmModificar.dispose();
 			new ModificarView();
 			return false;
