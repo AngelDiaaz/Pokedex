@@ -229,12 +229,10 @@ public class ModificarView {
 	 */
 
 	private void cambiar(int index) {
+		Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
+				"",	Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
+				textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
 		
-		pokemons.set(index,
-				new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
-						Tipo.valueOf(Tipo.class, cbTipo.getSelectedItem().toString()),
-						Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
-						textCategoria.getText(), textHabilidad.getText(), textUrl.getText()));
-
+		pokemonDAO.modificar(a);
 	}
 }

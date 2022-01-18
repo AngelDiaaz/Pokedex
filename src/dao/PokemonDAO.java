@@ -1,15 +1,13 @@
 package dao;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import models.Pokemon;
-import models.Usuario;
 
 public class PokemonDAO {
 	final String DB_URL = "jdbc:mysql://localhost/usuario_pokedex";
@@ -17,6 +15,11 @@ public class PokemonDAO {
 	final String PASS = "usuario_pokemon";
 	final String QUERY = "SELECT idpokemons, nombre, tipo, altura, peso, categoria, habilidad, url FROM pokemons";
 
+	/**
+	 * Método que guarda todos los pokemons de la base de datos en un array list, para luego poder verla en la pokedex
+	 * @return ArrayList con todos los pokemons de la base de datos
+	 */
+	
 	public ArrayList<Pokemon> getAll() {
 		final String QUERY = "SELECT idpokemons, nombre, tipo, altura, peso, categoria, habilidad, url "
 				+ "FROM pokemons";
@@ -43,6 +46,11 @@ public class PokemonDAO {
 		return pokemons;
 
 	}
+	
+	/**
+	 * Añade un nuevo pokemon a la base de datos
+	 * @param pokemon Pokemon que queremos añadir
+	 */
 
 	public void registrar(Pokemon pokemon) {
 
@@ -59,6 +67,11 @@ public class PokemonDAO {
 		}
 	}
 	
+	/**
+	 * Elimina un pokemon de la base de datos
+	 * @param pokemon Pokemon que queremos eliminar
+	 */
+	
 	public void eliminar(Pokemon pokemon) {
 		 final String DELETE = "DELETE FROM pokemons WHERE idpokemons = '" + pokemon.getNumero() + "';";
 
@@ -70,19 +83,24 @@ public class PokemonDAO {
 					e.printStackTrace();
 				}
 	}
+	
+	/**
+	 * Modifica un pokemon de la base de datos
+	 * @param pokemon Pokemon que queremos modificar
+	 */
+	
+	public void modificar(Pokemon pokemon) {
+		final String UPDATE = "UPDATE pokemons SET idpokemons = '" + pokemon.getNumero() + "', nombre = '" + pokemon.getNombre() + 
+				"', tipo = '" + pokemon.getTipo() + "', altura = '" + pokemon.getAltura() + "', peso = '" + pokemon.getPeso() + "', categoria = '" +
+				pokemon.getCategoria() + "', habilidad = '" + pokemon.getHabilidad() + "', url = '" + pokemon.getUrl() + "' WHERE idpokemons = '" 
+				+ pokemon.getNumero() + "' OR nombre = '" + pokemon.getNombre() + "';";
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(UPDATE);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
-//	public boolean login(String usuario, String password) {
-//		final String QUERY = "SELECT usuario, password FROM usuarios " + 
-//							"where usuario = '" + usuario + "' and " + 
-//							"password = '" + password + "'";
-//		try {
-//			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-//			Statement stmt = conn.createStatement();
-//			ResultSet rs = stmt.executeQuery(QUERY);
-//			return rs.next();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
 }

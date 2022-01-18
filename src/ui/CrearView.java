@@ -237,6 +237,8 @@ public class CrearView {
 					textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
 			pokemonDAO.registrar(a);
 			
+			JOptionPane.showMessageDialog(frmCrear, "El pokemon " + a.getNombre() + " se ha registrado en la pokedex");
+			
 		} else {
 			JOptionPane.showMessageDialog(frmCrear, "El pokemon ya esta registrado en la pokedex");
 		}
