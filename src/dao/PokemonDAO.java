@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import models.Pokemon;
 
 public class PokemonDAO {
@@ -100,6 +102,8 @@ public class PokemonDAO {
 			stmt.executeUpdate(UPDATE);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "El número de pokemon " + pokemon.getNumero()
+			+ " o el nombre de " + pokemon.getNombre() + " ya está registrado en la pokedex");
 		}
 	}
 

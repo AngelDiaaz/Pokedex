@@ -199,11 +199,7 @@ public class ModificarView {
 
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				boolean cambiar = cambiar();
-//				if (cambiar == true) {
-//					frmModificar.dispose();
-//					new PokedexView();
-//				}
+
 				cambiar();
 				frmModificar.dispose();
 				new PokedexView();
@@ -240,43 +236,8 @@ public class ModificarView {
 		Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(), "",
 				Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
 				textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
-		boolean correcto = true;
-		// Compruebo que en el array list con los pokemons de la base de datos no está
-		// registrado ni el número ni el nombre del pokemon previamente
-//		for (Pokemon pokemon : pokemons) {
-//
-//			if (pokemon.getNumero() == a.getNumero()) { // Una vez veo que coincide el nombre me aseguro,
-//														// que el numero también
-//				if (pokemon.getNombre().equalsIgnoreCase(a.getNombre())) {
-//
-//					for (Pokemon pokemon2 : pokemons) {
-//						if (pokemon2.getAltura() == a.getAltura()
-//								&& pokemon2.getCategoria().equalsIgnoreCase(a.getCategoria())
-//								&& pokemon2.getHabilidad().equalsIgnoreCase(a.getHabilidad())
-//								&& pokemon2.getPeso() == a.getPeso()) {
-//							JOptionPane.showMessageDialog(frmModificar, "El número de pokemon " + a.getNumero()
-//									+ " o el nombre de " + a.getNombre() + " ya está registrado en la pokedex");
-//							correcto = false;
-//						}
-//					}
-//				}
-//			}
-//		}
-//		if (correcto) { // Si no esta repetido el numero con otro pokemon o el nombre, modifico el
-//						// pokemon
-//			pokemonDAO.modificar(a);
-//			return true;
-//		} else { // Sino elimino la pestaña y creo otra para poder modificarlo si quiero
-//			frmModificar.dispose();
-//			new ModificarView();
-//			return false;
-//		}
-		
-		try {
-			pokemonDAO.modificar(a);
-		} catch(Exception e) {
-			JOptionPane.showMessageDialog(frmModificar, "El número de pokemon " + a.getNumero()
-			+ " o el nombre de " + a.getNombre() + " ya está registrado en la pokedex");
-		}
+
+		pokemonDAO.modificar(a);
+
 	}
 }
