@@ -156,11 +156,15 @@ public class RegistroView {
 		String passwd = new String(pfPassword.getPassword());
 		String repetir = new String (pfPasswordRepetir.getPassword());
 		
-		
-		if(passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) { //Cuando las constrañas coincidan y no haya ningun campo vacio
-			usuarioDAO.registrar(new Usuario(textUsuario.getText(), passwd));
+		//Cuando las constrañas coincidan y no haya ningun campo vacio
+		if(passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) { 			
+			boolean registrar = usuarioDAO.registrar(new Usuario(textUsuario.getText(), passwd));
 			frmRegistro.dispose();
-			new LoginView();
+			if(registrar == true) {
+				new LoginView();
+			} else {
+				new RegistroView(frmRegistro);
+			}
 			
 		} else if (!passwd.equals(repetir)){
 			JOptionPane.showMessageDialog(btnRegistro, "La contraseña no coincide, vuelvelo a intentar");
