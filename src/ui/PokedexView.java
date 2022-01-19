@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class PokedexView {
 
@@ -77,73 +78,78 @@ public class PokedexView {
 		frmPokedex.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(PokedexView.class.getResource("/image/icono app.png")));
 		frmPokedex.setTitle("Pokedex");
-		frmPokedex.setBounds(100, 100, 782, 695);
+		frmPokedex.setBounds(100, 100, 856, 752);
 		frmPokedex.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPokedex.getContentPane().setLayout(null);
 
 		btnCerrarSesion = new JButton("Cerrar Sesi\u00F3n");
 		btnCerrarSesion.setBackground(new Color(255, 204, 51));
-		btnCerrarSesion.setBounds(23, 610, 129, 23);
+		btnCerrarSesion.setBounds(37, 659, 142, 33);
 		btnCerrarSesion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnCerrarSesion);
 
 		btnCrear = new JButton("A\u00F1adir");
 		btnCrear.setBackground(new Color(51, 153, 153));
-		btnCrear.setBounds(517, 610, 103, 23);
+		btnCrear.setBounds(518, 659, 134, 33);
 		btnCrear.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnCrear);
 
 		btnModificar = new JButton("Modificar");
 		btnModificar.setBackground(new Color(51, 153, 204));
-		btnModificar.setBounds(630, 610, 103, 23);
+		btnModificar.setBounds(662, 659, 134, 33);
 		btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnModificar);
 
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBackground(new Color(255, 102, 102));
-		btnEliminar.setBounds(403, 610, 103, 23);
+		btnEliminar.setBounds(374, 659, 134, 33);
 		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmPokedex.getContentPane().add(btnEliminar);
 
 		lblNombrePokemon = new JLabel("");
-		lblNombrePokemon.setBounds(458, 103, 199, 53);
-		lblNombrePokemon.setFont(new Font("Verdana", Font.BOLD, 22));
+		lblNombrePokemon.setBounds(505, 103, 199, 53);
+		lblNombrePokemon.setFont(new Font("Verdana", Font.BOLD, 24));
 		frmPokedex.getContentPane().add(lblNombrePokemon);
 
 		lblTipo = new JLabel("Tipo");
-		lblTipo.setBounds(34, 125, 46, 23);
-		lblTipo.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblTipo.setForeground(Color.WHITE);
+		lblTipo.setBounds(37, 215, 55, 25);
+		lblTipo.setFont(new Font("Verdana", Font.BOLD, 18));
 		frmPokedex.getContentPane().add(lblTipo);
 
 		lblPeso = new JLabel("Peso");
-		lblPeso.setBounds(34, 260, 55, 25);
-		lblPeso.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblPeso.setForeground(Color.WHITE);
+		lblPeso.setBounds(37, 398, 55, 25);
+		lblPeso.setFont(new Font("Verdana", Font.BOLD, 18));
 		frmPokedex.getContentPane().add(lblPeso);
 
 		lblAltura = new JLabel("Altura");
-		lblAltura.setBounds(140, 261, 71, 25);
-		lblAltura.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblAltura.setForeground(Color.WHITE);
+		lblAltura.setBounds(140, 398, 71, 25);
+		lblAltura.setFont(new Font("Verdana", Font.BOLD, 18));
 		frmPokedex.getContentPane().add(lblAltura);
 
 		lblCategoria = new JLabel("Categor\u00EDa");
-		lblCategoria.setBounds(140, 125, 95, 23);
-		lblCategoria.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblCategoria.setForeground(Color.WHITE);
+		lblCategoria.setBounds(37, 304, 115, 31);
+		lblCategoria.setFont(new Font("Verdana", Font.BOLD, 18));
 		frmPokedex.getContentPane().add(lblCategoria);
 
 		lblHabilidad = new JLabel("Habilidad");
-		lblHabilidad.setBounds(34, 433, 81, 23);
-		lblHabilidad.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblHabilidad.setForeground(Color.WHITE);
+		lblHabilidad.setBounds(37, 485, 115, 25);
+		lblHabilidad.setFont(new Font("Verdana", Font.BOLD, 18));
 		frmPokedex.getContentPane().add(lblHabilidad);
 
 		lblNumero = new JLabel("");
-		lblNumero.setBounds(377, 29, 115, 63);
-		lblNumero.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblNumero.setBounds(393, 29, 115, 63);
+		lblNumero.setFont(new Font("Verdana", Font.BOLD, 22));
 		frmPokedex.getContentPane().add(lblNumero);
 
 		btnSiguiente = new JButton(">");
 		btnSiguiente.setBackground(Color.WHITE);
 		btnSiguiente.setFont(new Font("Verdana", Font.BOLD, 14));
-		btnSiguiente.setBounds(645, 23, 88, 69);
+		btnSiguiente.setBounds(730, 23, 88, 69);
 		frmPokedex.getContentPane().add(btnSiguiente);
 
 		btnAtras = new JButton("<");
@@ -153,33 +159,43 @@ public class PokedexView {
 		frmPokedex.getContentPane().add(btnAtras);
 
 		lblVerPeso = new JLabel("");
-		lblVerPeso.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblVerPeso.setBounds(34, 343, 50, 23);
+		lblVerPeso.setForeground(Color.WHITE);
+		lblVerPeso.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblVerPeso.setBounds(37, 441, 50, 23);
 		frmPokedex.getContentPane().add(lblVerPeso);
 
 		lblVerAltura = new JLabel("");
-		lblVerAltura.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblVerAltura.setBounds(140, 344, 55, 20);
+		lblVerAltura.setForeground(Color.WHITE);
+		lblVerAltura.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblVerAltura.setBounds(140, 441, 71, 25);
 		frmPokedex.getContentPane().add(lblVerAltura);
 
 		lblVerHabilidad = new JLabel("");
-		lblVerHabilidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblVerHabilidad.setBounds(34, 495, 201, 33);
+		lblVerHabilidad.setForeground(Color.WHITE);
+		lblVerHabilidad.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblVerHabilidad.setBounds(37, 528, 201, 33);
 		frmPokedex.getContentPane().add(lblVerHabilidad);
 
 		lblVerCategoria = new JLabel("");
-		lblVerCategoria.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblVerCategoria.setBounds(140, 194, 95, 20);
+		lblVerCategoria.setForeground(Color.WHITE);
+		lblVerCategoria.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblVerCategoria.setBounds(37, 352, 142, 25);
 		frmPokedex.getContentPane().add(lblVerCategoria);
 
 		lblVerTipo = new JLabel("");
-		lblVerTipo.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblVerTipo.setBounds(34, 194, 81, 20);
+		lblVerTipo.setForeground(Color.WHITE);
+		lblVerTipo.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblVerTipo.setBounds(37, 251, 95, 32);
 		frmPokedex.getContentPane().add(lblVerTipo);
 
 		lblFoto = new JLabel("");
-		lblFoto.setBounds(258, 145, 498, 439);
+		lblFoto.setBounds(308, 194, 498, 439);
 		frmPokedex.getContentPane().add(lblFoto);
+		
+		JLabel lblPokedexFondo = new JLabel("");
+		lblPokedexFondo.setIcon(new ImageIcon(PokedexView.class.getResource("/image/fondo pokedex.png")));
+		lblPokedexFondo.setBounds(21, 127, 268, 513);
+		frmPokedex.getContentPane().add(lblPokedexFondo);
 
 	}
 	
@@ -321,5 +337,4 @@ public class PokedexView {
 
 		}
 	}
-
 }
