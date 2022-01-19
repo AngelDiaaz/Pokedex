@@ -75,19 +75,19 @@ public class ModificarView {
 		frmModificar.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(PokedexView.class.getResource("/image/icono app.png")));
 		frmModificar.setTitle("Modificar");
-		frmModificar.setBounds(100, 100, 734, 695);
+		frmModificar.setBounds(100, 100, 734, 662);
 		frmModificar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmModificar.getContentPane().setLayout(null);
 
 		btnSalir = new JButton("Salir");
 		btnSalir.setBackground(new Color(255, 204, 51));
-		btnSalir.setBounds(50, 610, 129, 23);
+		btnSalir.setBounds(58, 565, 142, 33);
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmModificar.getContentPane().add(btnSalir);
 
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setBackground(new Color(102, 204, 0));
-		btnGuardar.setBounds(550, 610, 147, 23);
+		btnGuardar.setBounds(513, 565, 142, 33);
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmModificar.getContentPane().add(btnGuardar);
 

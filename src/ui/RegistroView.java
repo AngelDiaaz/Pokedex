@@ -70,53 +70,53 @@ public class RegistroView {
 		frmRegistro.getContentPane().setLayout(null);
 		
 		lblRegistro = new JLabel("Crear Cuenta");
-		lblRegistro.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblRegistro.setBounds(152, 11, 141, 40);
+		lblRegistro.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblRegistro.setBounds(138, 11, 166, 40);
 		frmRegistro.getContentPane().add(lblRegistro);
 		
 		lblNewUsuario = new JLabel("Usuario");
-		lblNewUsuario.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblNewUsuario.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblNewUsuario.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewUsuario.setBounds(107, 91, 62, 14);
 		frmRegistro.getContentPane().add(lblNewUsuario);
 		
 		lblNewPassword = new JLabel("Contrase\u00F1a");
-		lblNewPassword.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblNewPassword.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblNewPassword.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewPassword.setBounds(95, 123, 75, 14);
+		lblNewPassword.setBounds(74, 123, 96, 14);
 		frmRegistro.getContentPane().add(lblNewPassword);
 		
 		lblNewPasswordRepetir = new JLabel("Repetir contrase\u00F1a");
-		lblNewPasswordRepetir.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewPasswordRepetir.setBounds(44, 158, 125, 14);
+		lblNewPasswordRepetir.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		lblNewPasswordRepetir.setBounds(28, 154, 141, 20);
 		frmRegistro.getContentPane().add(lblNewPasswordRepetir);
 		
 		textUsuario = new JTextField();
-		textUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		textUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		textUsuario.setBounds(212, 89, 116, 20);
 		frmRegistro.getContentPane().add(textUsuario);
 		textUsuario.setColumns(10);
 		
 		pfPassword = new JPasswordField();
-		pfPassword.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		pfPassword.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		pfPassword.setBounds(212, 120, 116, 20);
 		frmRegistro.getContentPane().add(pfPassword);
 		
 		pfPasswordRepetir = new JPasswordField();
-		pfPasswordRepetir.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		pfPasswordRepetir.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		pfPasswordRepetir.setBounds(212, 155, 116, 20);
 		frmRegistro.getContentPane().add(pfPasswordRepetir);
 		
 		btnRegistro = new JButton("Registrarse");
 		btnRegistro.setBackground(new Color(102, 204, 0));
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistro.setBounds(256, 217, 109, 23);
+		btnRegistro.setBounds(256, 212, 107, 29);
 		frmRegistro.getContentPane().add(btnRegistro);
 		
 		btnInicioSesion = new JButton("Volver");
 		btnInicioSesion.setBackground(new Color(255, 204, 51));
 		btnInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnInicioSesion.setBounds(76, 217, 109, 23);
+		btnInicioSesion.setBounds(74, 212, 107, 29);
 		frmRegistro.getContentPane().add(btnInicioSesion);
 		frmRegistro.setVisible(true);
 	}

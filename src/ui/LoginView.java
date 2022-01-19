@@ -74,44 +74,44 @@ public class LoginView {
 		frmLogin.getContentPane().add(lblTitulo);
 
 		lblUsuario = new JLabel("Usuario");
-		lblUsuario.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblUsuario.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblUsuario.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUsuario.setBounds(61, 117, 81, 14);
 		frmLogin.getContentPane().add(lblUsuario);
 
 		tfUsuario = new JTextField();
-		tfUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		tfUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		tfUsuario.setBounds(170, 115, 150, 20);
 		frmLogin.getContentPane().add(tfUsuario);
 		tfUsuario.setColumns(10);
 
 		lblPassword = new JLabel("Contrase\u00F1a");
-		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblPassword.setBounds(61, 162, 81, 14);
+		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		lblPassword.setBounds(58, 162, 84, 14);
 		frmLogin.getContentPane().add(lblPassword);
 
 		btnEntrar = new JButton("Entrar");
 		btnEntrar.setBackground(new Color(102, 204, 0));
 
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnEntrar.setBounds(306, 213, 107, 23);
+		btnEntrar.setBounds(306, 213, 107, 29);
 		frmLogin.getContentPane().add(btnEntrar);
 
 		pfPassword = new JPasswordField();
-		pfPassword.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		pfPassword.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		pfPassword.setBounds(170, 160, 150, 20);
 		frmLogin.getContentPane().add(pfPassword);
 		
 		btnRegistro = new JButton("Registrarse");
 		btnRegistro.setBackground(new Color(255, 204, 51));
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistro.setBounds(183, 213, 107, 23);
+		btnRegistro.setBounds(183, 213, 107, 29);
 		frmLogin.getContentPane().add(btnRegistro);
 		
 		btnSalir = new JButton("Salir");
 		btnSalir.setBackground(new Color(255, 102, 102));
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnSalir.setBounds(35, 214, 107, 23);
+		btnSalir.setBounds(35, 213, 107, 29);
 		frmLogin.getContentPane().add(btnSalir);
 	}
 	

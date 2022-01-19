@@ -76,19 +76,19 @@ public class CrearView {
 		frmCrear.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(PokedexView.class.getResource("/image/icono app.png")));
 		frmCrear.setTitle("Creacion");
-		frmCrear.setBounds(100, 100, 734, 695);
+		frmCrear.setBounds(100, 100, 734, 662);
 		frmCrear.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCrear.getContentPane().setLayout(null);
 
 		btnSalir = new JButton("Salir");
 		btnSalir.setBackground(new Color(255, 204, 51));
-		btnSalir.setBounds(50, 610, 129, 23);
+		btnSalir.setBounds(58, 563, 142, 33);
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmCrear.getContentPane().add(btnSalir);
 
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setBackground(new Color(102, 204, 0));
-		btnGuardar.setBounds(550, 610, 147, 23);
+		btnGuardar.setBounds(520, 563, 142, 33);
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frmCrear.getContentPane().add(btnGuardar);
 
