@@ -233,7 +233,7 @@ public class CrearView {
 //					textCategoria.getText(), textHabilidad.getText(), textUrl.getText()));
 			
 			Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
-					"", Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
+					"", Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
 					textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
 			pokemonDAO.registrar(a);
 			

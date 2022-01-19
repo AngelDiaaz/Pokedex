@@ -234,7 +234,7 @@ public class ModificarView {
 
 	private void cambiar() {
 		Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(), "",
-				Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
+				Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
 				textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
 
 		pokemonDAO.modificar(a);
