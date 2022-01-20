@@ -160,10 +160,10 @@ public class RegistroView {
 		if(passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) { 			
 			boolean registrar = usuarioDAO.registrar(new Usuario(textUsuario.getText(), passwd));
 			frmRegistro.dispose();
-			if(registrar == true) {
+			if(registrar == true) { //Si el usuario se registra correctamente
 				new LoginView();
-			} else {
-				new RegistroView(frmRegistro);
+			} else { // Sino vuelve a abrirse otra pestaña de registro
+				new RegistroView(parent);
 			}
 			
 		} else if (!passwd.equals(repetir)){
