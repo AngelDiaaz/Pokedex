@@ -22,7 +22,7 @@ import javax.swing.ImageIcon;
 
 public class PokedexView {
 
-	//Propiedades
+	// Propiedades
 	private JFrame frmPokedex;
 	private JButton btnCerrarSesion;
 	private JButton btnCrear;
@@ -67,7 +67,7 @@ public class PokedexView {
 		configureListeners();
 		verPokemon(index);
 	}
-	
+
 	/**
 	 * Componentes del view
 	 */
@@ -191,14 +191,14 @@ public class PokedexView {
 		lblFoto = new JLabel("");
 		lblFoto.setBounds(308, 194, 498, 439);
 		frmPokedex.getContentPane().add(lblFoto);
-		
+
 		JLabel lblPokedexFondo = new JLabel("");
 		lblPokedexFondo.setIcon(new ImageIcon(PokedexView.class.getResource("/image/fondo pokedex.png")));
 		lblPokedexFondo.setBounds(21, 127, 268, 513);
 		frmPokedex.getContentPane().add(lblPokedexFondo);
 
 	}
-	
+
 	/**
 	 * Acciones de los botones del view
 	 */
@@ -214,24 +214,24 @@ public class PokedexView {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				int resp=JOptionPane.showConfirmDialog(null,"¿Quieres eliminar este pokemon?");
-			      if (JOptionPane.OK_OPTION == resp){
-			    	  System.out.println("Selecciona opción Afirmativa");
+				int resp = JOptionPane.showConfirmDialog(frmPokedex,
+						"¿Quieres eliminar a " + pokemons.get(index).getNombre() + " de la pokedex?");
+				if (JOptionPane.OK_OPTION == resp) {
+					System.out.println("Selecciona opción Afirmativa");
 					pokemonDAO.eliminar(pokemons.get(index));
 					frmPokedex.dispose();
 					new PokedexView();
 
-				 }
-			      else{
-			    	  System.out.println("No selecciona una opción afirmativa");
-			   }
+				} else {
+					System.out.println("No selecciona una opción afirmativa");
+				}
 
 //				if (index == 0) {
 //					verPokemon(0);
 //				} else {
 //					verPokemon(--index);
 //				}
-			}
+			}//Mirar cuando este vacio la pokedex
 
 		});
 
@@ -252,7 +252,7 @@ public class PokedexView {
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				index++;
-				if(index == pokemons.size()) { //Cuando el index es la ultima posicion del array list
+				if (index == pokemons.size()) { // Cuando el index es la ultima posicion del array list
 					index = 0;
 				}
 				verPokemon(index);
@@ -262,16 +262,17 @@ public class PokedexView {
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				index--;
-				if(index < 0) {
+				if (index < 0) {
 					index = pokemons.size() - 1;
 				}
 				verPokemon(index);
 			}
 		});
 	}
-	
+
 	/**
 	 * Te dice cual es la posicion que se encuentra el pokemon en el array list
+	 * 
 	 * @return Posicion del pokemon seleccionado
 	 */
 
@@ -279,15 +280,16 @@ public class PokedexView {
 
 		return index;
 	}
-	
+
 	/**
 	 * Muestra el pokemon seleccionado
+	 * 
 	 * @param index Posicion del pokemon seleccionado
-	 */ 
+	 */
 
 	private void verPokemon(int index) {
 
-		if (!pokemons.isEmpty()) { //Si el array list de pokemon no esta vacio
+		if (!pokemons.isEmpty()) { // Si el array list de pokemon no esta vacio
 
 //			if (index == 0) { 
 //				btnAtras.setVisible(false); //Oculta el boton atras de la view
@@ -308,10 +310,10 @@ public class PokedexView {
 			lblVerAltura.setText(pokemons.get(index).getAltura() + "");
 			lblVerHabilidad.setText(pokemons.get(index).getHabilidad());
 			lblVerCategoria.setText(pokemons.get(index).getCategoria());
-			
-			//pokemonDAO.infoPokemon();
 
-			//Sirve para inserta la imagen de los pokemon a través de una url
+			// pokemonDAO.infoPokemon();
+
+			// Sirve para inserta la imagen de los pokemon a través de una url
 			BufferedImage img;
 			try {
 				img = ImageIO.read(new URL(pokemons.get(index).getUrl()));
@@ -320,12 +322,12 @@ public class PokedexView {
 				lblFoto.setVisible(false);
 			}
 		} else {
-			
-			//Oculta los botones
+
+			// Oculta los botones
 			btnModificar.setVisible(false);
 			btnEliminar.setVisible(false);
 
-			//Te muestra la view con los campos vacios
+			// Te muestra la view con los campos vacios
 			lblVerTipo.setText("");
 			lblNumero.setText("Nº");
 			lblNombrePokemon.setText("");

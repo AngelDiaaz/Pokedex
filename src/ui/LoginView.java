@@ -33,6 +33,7 @@ public class LoginView {
 	private JPasswordField pfPassword;
 	private JButton btnRegistro;
 	private JButton btnSalir;
+	private JLabel lblFondoLogin;
 	private UsuarioDAO usuarioDAO;
 
 	/**
@@ -74,9 +75,10 @@ public class LoginView {
 		frmLogin.getContentPane().add(lblTitulo);
 
 		lblUsuario = new JLabel("Usuario");
+		lblUsuario.setForeground(Color.WHITE);
 		lblUsuario.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblUsuario.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblUsuario.setBounds(61, 117, 81, 14);
+		lblUsuario.setBounds(61, 115, 81, 20);
 		frmLogin.getContentPane().add(lblUsuario);
 
 		tfUsuario = new JTextField();
@@ -86,15 +88,16 @@ public class LoginView {
 		tfUsuario.setColumns(10);
 
 		lblPassword = new JLabel("Contrase\u00F1a");
+		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lblPassword.setBounds(58, 162, 84, 14);
+		lblPassword.setBounds(58, 160, 84, 20);
 		frmLogin.getContentPane().add(lblPassword);
 
 		btnEntrar = new JButton("Entrar");
 		btnEntrar.setBackground(new Color(102, 204, 0));
 
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnEntrar.setBounds(306, 213, 107, 29);
+		btnEntrar.setBounds(306, 221, 107, 29);
 		frmLogin.getContentPane().add(btnEntrar);
 
 		pfPassword = new JPasswordField();
@@ -105,14 +108,19 @@ public class LoginView {
 		btnRegistro = new JButton("Registrarse");
 		btnRegistro.setBackground(new Color(255, 204, 51));
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistro.setBounds(183, 213, 107, 29);
+		btnRegistro.setBounds(183, 221, 107, 29);
 		frmLogin.getContentPane().add(btnRegistro);
 		
 		btnSalir = new JButton("Salir");
 		btnSalir.setBackground(new Color(255, 102, 102));
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnSalir.setBounds(35, 213, 107, 29);
+		btnSalir.setBounds(35, 221, 107, 29);
 		frmLogin.getContentPane().add(btnSalir);
+		
+		lblFondoLogin = new JLabel("");
+		lblFondoLogin.setIcon(new ImageIcon(LoginView.class.getResource("/image/fondo login.png")));
+		lblFondoLogin.setBounds(0, 0, 481, 326);
+		frmLogin.getContentPane().add(lblFondoLogin);
 	}
 	
 	/**
