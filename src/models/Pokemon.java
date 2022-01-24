@@ -1,27 +1,26 @@
 package models;
 
-import enums.Tipo;
-
 public class Pokemon {
 	
 	//Propiedades
 	protected int numero;
 	protected String nombre;
-	protected Tipo tipo;
+	protected String tipo1;
+	protected String tipo2;
 	protected double altura;
 	protected double peso;
 	protected String categoria;
 	protected String habilidad;
 	protected String url;
-	protected String tipo2;
 	
 	//Constructores
-	public Pokemon(int numero, String nombre, Tipo tipo, double altura, double peso, String categoria,
+	public Pokemon(int numero, String nombre, String tipo1, String tipo2, double altura, double peso, String categoria,
 			String habilidad, String url) {
 		super();
 		this.numero = numero;
 		this.nombre = nombre;
-		this.tipo = tipo;
+		this.tipo1 = tipo1;
+		this.tipo2 = tipo2;
 		this.altura = altura;
 		this.peso = peso;
 		this.categoria = categoria;
@@ -30,12 +29,12 @@ public class Pokemon {
 			}
 	
 	//Para que los tipos sean string y no enums
-	public Pokemon(int numero2, String nombre2, String tipo2, double altura2, double peso2, String categoria2,
+	public Pokemon(int numero2, String nombre2, String tipo1, double altura2, double peso2, String categoria2,
 			String habilidad2, String url2) {
 		// TODO Auto-generated constructor stub
 		this.numero = numero2;
 		this.nombre = nombre2;
-		this.tipo2 = tipo2;
+		this.tipo1 = tipo1;
 		this.altura = altura2;
 		this.peso = peso2;
 		this.categoria = categoria2;
@@ -52,8 +51,12 @@ public class Pokemon {
 		return nombre;
 	}
 
-	public Tipo getTipo() {
-		return tipo;
+	public String getTipo1() {
+		return tipo1;
+	}
+
+	public String getTipo2() {
+		return tipo2;
 	}
 
 	public double getAltura() {
@@ -88,10 +91,6 @@ public class Pokemon {
 		this.nombre = nombre;
 	}
 
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	}
-
 	public void setAltura(double altura) {
 		this.altura = altura;
 	}
@@ -110,7 +109,7 @@ public class Pokemon {
 
 	@Override
 	public String toString() {
-		return "Pokemon [numero=" + numero + ", nombre=" + nombre + ", tipo=" + tipo + ", altura=" + altura + ", peso="
+		return "Pokemon [numero=" + numero + ", nombre=" + nombre + ", tipo1=" + tipo1 + ", tipo2=" + tipo2 + ", altura=" + altura + ", peso="
 				+ peso + ", categoria=" + categoria + ", habilidad=" + habilidad + "]";
 	}
 

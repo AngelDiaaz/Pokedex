@@ -11,11 +11,7 @@ import javax.swing.JOptionPane;
 
 import models.Pokemon;
 
-public class PokemonDAO {
-	final String DB_URL = "jdbc:mysql://localhost/usuario_pokedex";
-	final String USER = "usuarios";
-	final String PASS = "usuario_pokemon";
-	final String QUERY = "SELECT idpokemons, nombre, tipo, altura, peso, categoria, habilidad, url FROM pokemons";
+public class PokemonDAO extends AbstractDAO{
 
 	/**
 	 * Método que guarda todos los pokemons de la base de datos en un array list, para luego poder verla en la pokedex
@@ -57,7 +53,7 @@ public class PokemonDAO {
 	public void registrar(Pokemon pokemon) {
 
 		final String INSERT = "INSERT INTO pokemons (idpokemons, nombre, tipo, altura, peso, categoria, habilidad, url) "
-				+ "VALUES ('" + pokemon.getNumero() + "','" + pokemon.getNombre() + "','" + pokemon.getTipo() + "','"
+				+ "VALUES ('" + pokemon.getNumero() + "','" + pokemon.getNombre() + "','" + pokemon.getTipo1() + "','"
 				+ pokemon.getAltura() + "','" + pokemon.getPeso() + "','" + pokemon.getCategoria() + "','" + pokemon.getHabilidad()
 				+ "','" + pokemon.getUrl() + "');";
 		try {
@@ -93,7 +89,7 @@ public class PokemonDAO {
 	
 	public void modificar(Pokemon pokemon) {
 		final String UPDATE = "UPDATE pokemons SET idpokemons = '" + pokemon.getNumero() + "', nombre = '" + pokemon.getNombre() + 
-				"', tipo = '" + pokemon.getTipo() + "', altura = '" + pokemon.getAltura() + "', peso = '" + pokemon.getPeso() + "', categoria = '" +
+				"', tipo = '" + pokemon.getTipo1() + "', altura = '" + pokemon.getAltura() + "', peso = '" + pokemon.getPeso() + "', categoria = '" +
 				pokemon.getCategoria() + "', habilidad = '" + pokemon.getHabilidad() + "', url = '" + pokemon.getUrl() + "' WHERE idpokemons = '" 
 				+ pokemon.getNumero() + "' OR nombre = '" + pokemon.getNombre() + "';";
 		try {

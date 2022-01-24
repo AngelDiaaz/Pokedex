@@ -67,7 +67,7 @@ public class RegistroView {
 		frmRegistro.getContentPane().setForeground(Color.BLACK);
 		frmRegistro.setIconImage(Toolkit.getDefaultToolkit().getImage(RegistroView.class.getResource("/image/icono app.png")));
 		frmRegistro.setTitle("Registro");
-		frmRegistro.setBounds(100, 100, 450, 300);
+		frmRegistro.setBounds(100, 100, 450, 292);
 		frmRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistro.getContentPane().setLayout(null);
 		
@@ -117,13 +117,13 @@ public class RegistroView {
 		btnRegistro = new JButton("Registrarse");
 		btnRegistro.setBackground(new Color(102, 204, 0));
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistro.setBounds(256, 212, 107, 29);
+		btnRegistro.setBounds(255, 213, 107, 29);
 		frmRegistro.getContentPane().add(btnRegistro);
 		
 		btnInicioSesion = new JButton("Volver");
 		btnInicioSesion.setBackground(new Color(255, 204, 51));
 		btnInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnInicioSesion.setBounds(74, 212, 107, 29);
+		btnInicioSesion.setBounds(73, 213, 107, 29);
 		frmRegistro.getContentPane().add(btnInicioSesion);
 		
 		lblFondoRegistro = new JLabel("");

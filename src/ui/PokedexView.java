@@ -303,7 +303,7 @@ public class PokedexView {
 //				btnSiguiente.setVisible(true);
 //			}
 
-			lblVerTipo.setText(pokemons.get(index).getTipo() + "");
+			lblVerTipo.setText(pokemons.get(index).getTipo1() + "");
 			lblNumero.setText(("Nº " + pokemons.get(index).getNumero() + ""));
 			lblNombrePokemon.setText(pokemons.get(index).getNombre());
 			lblVerPeso.setText(pokemons.get(index).getPeso() + "");

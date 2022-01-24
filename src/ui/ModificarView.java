@@ -11,11 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import dao.PokemonDAO;
-import enums.Tipo;
 import models.Pokemon;
 import java.awt.Color;
 
@@ -40,7 +38,8 @@ public class ModificarView {
 	private JTextField textUrl;
 	private JTextField textNombre;
 	private JTextField textNumero;
-	private JComboBox cbTipo;
+	private JComboBox<String> cbTipo1;
+	private JComboBox<String> cbTipo2;
 	private JLabel lblTitulo;
 	private PokemonDAO pokemonDAO;
 	private ArrayList<Pokemon> pokemons;
@@ -92,27 +91,27 @@ public class ModificarView {
 		frmModificar.getContentPane().add(btnGuardar);
 
 		lblTipo = new JLabel("Tipo");
-		lblTipo.setBounds(34, 125, 46, 23);
+		lblTipo.setBounds(155, 125, 46, 23);
 		lblTipo.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmModificar.getContentPane().add(lblTipo);
 
 		lblPeso = new JLabel("Peso");
-		lblPeso.setBounds(34, 260, 55, 25);
+		lblPeso.setBounds(47, 260, 55, 25);
 		lblPeso.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmModificar.getContentPane().add(lblPeso);
 
 		lblAltura = new JLabel("Altura");
-		lblAltura.setBounds(190, 260, 71, 25);
+		lblAltura.setBounds(186, 260, 71, 25);
 		lblAltura.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmModificar.getContentPane().add(lblAltura);
 
 		lblCategoria = new JLabel("Categor\u00EDa");
-		lblCategoria.setBounds(190, 125, 95, 23);
+		lblCategoria.setBounds(532, 261, 95, 23);
 		lblCategoria.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmModificar.getContentPane().add(lblCategoria);
 
 		lblHabilidad = new JLabel("Habilidad");
-		lblHabilidad.setBounds(34, 433, 81, 23);
+		lblHabilidad.setBounds(82, 433, 81, 23);
 		lblHabilidad.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmModificar.getContentPane().add(lblHabilidad);
 
@@ -124,7 +123,7 @@ public class ModificarView {
 
 		textAltura = new JTextField();
 		textAltura.setFont(new Font("Verdana", Font.PLAIN, 15));
-		textAltura.setBounds(190, 323, 71, 41);
+		textAltura.setBounds(175, 323, 71, 41);
 		frmModificar.getContentPane().add(textAltura);
 		textAltura.setColumns(10);
 
@@ -136,13 +135,13 @@ public class ModificarView {
 
 		textCategoria = new JTextField();
 		textCategoria.setFont(new Font("Verdana", Font.PLAIN, 15));
-		textCategoria.setBounds(190, 174, 170, 39);
+		textCategoria.setBounds(499, 324, 170, 39);
 		frmModificar.getContentPane().add(textCategoria);
 		textCategoria.setColumns(10);
 
 		lblUrl = new JLabel("URL");
 		lblUrl.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblUrl.setBounds(261, 434, 64, 21);
+		lblUrl.setBounds(436, 434, 64, 21);
 		frmModificar.getContentPane().add(lblUrl);
 
 		textUrl = new JTextField();
@@ -159,30 +158,37 @@ public class ModificarView {
 
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblNombre.setBounds(441, 125, 101, 21);
+		lblNombre.setBounds(526, 126, 101, 21);
 		frmModificar.getContentPane().add(lblNombre);
 
-		lblNumero = new JLabel("N\u00FAmero del pokemon");
+		lblNumero = new JLabel("N\u00FAmero");
 		lblNumero.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblNumero.setBounds(350, 260, 187, 22);
+		lblNumero.setBounds(343, 261, 81, 22);
 		frmModificar.getContentPane().add(lblNumero);
 
 		textNumero = new JTextField();
 		textNumero.setFont(new Font("Verdana", Font.PLAIN, 15));
-		textNumero.setBounds(350, 323, 129, 41);
+		textNumero.setBounds(319, 323, 129, 41);
 		frmModificar.getContentPane().add(textNumero);
 		textNumero.setColumns(10);
 
 		lblTitulo = new JLabel("Modificar pokemon");
-		lblTitulo.setFont(new Font("Verdana", Font.BOLD, 20));
-		lblTitulo.setBounds(269, 45, 214, 31);
+		lblTitulo.setFont(new Font("Verdana", Font.BOLD, 24));
+		lblTitulo.setBounds(269, 43, 270, 33);
 		frmModificar.getContentPane().add(lblTitulo);
 
-		cbTipo = new JComboBox();
-		cbTipo.setFont(new Font("Verdana", Font.PLAIN, 15));
-		cbTipo.setModel(new DefaultComboBoxModel(Tipo.values()));
-		cbTipo.setBounds(34, 174, 129, 39);
-		frmModificar.getContentPane().add(cbTipo);
+		cbTipo1 = new JComboBox<String>();
+		cbTipo1.setFont(new Font("Verdana", Font.PLAIN, 15));
+		cbTipo1.setModel(new DefaultComboBoxModel<String>());
+		cbTipo1.setBounds(34, 174, 129, 39);
+		frmModificar.getContentPane().add(cbTipo1);
+		
+		cbTipo2 = new JComboBox<String>();
+		cbTipo2.setFont(new Font("Verdana", Font.PLAIN, 15));
+		cbTipo2.setBounds(190, 174, 129, 39);
+		frmModificar.getContentPane().add(cbTipo2);
+		
+		
 	}
 
 	/**
@@ -215,7 +221,7 @@ public class ModificarView {
 
 	private void verPokemon(int index) {
 
-		cbTipo.setSelectedItem(pokemons.get(index).getTipo());
+		cbTipo1.setSelectedItem(pokemons.get(index).getTipo1());
 		textNumero.setText((pokemons.get(index).getNumero() + ""));
 		textNombre.setText(pokemons.get(index).getNombre());
 		textPeso.setText(pokemons.get(index).getPeso() + "");

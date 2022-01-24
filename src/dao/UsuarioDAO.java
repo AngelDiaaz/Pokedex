@@ -10,12 +10,7 @@ import javax.swing.JOptionPane;
 
 import models.Usuario;
 
-public class UsuarioDAO {
-
-	final String DB_URL = "jdbc:mysql://localhost/usuario_pokedex";
-	final String USER = "usuarios";
-	final String PASS = "usuario_pokemon";
-	final String QUERY = "SELECT usuario, password FROM usuarios";
+public class UsuarioDAO extends AbstractDAO{
 	
 	/**
 	 * Saca todo los usuarios y contraseñas de la base de datos
