@@ -25,7 +25,7 @@ import java.awt.Color;
 
 public class CrearView {
 
-	//Propiedades
+	// Propiedades
 	private JFrame frmCrear;
 	private JButton btnSalir;
 	private JButton btnGuardar;
@@ -191,7 +191,7 @@ public class CrearView {
 		cbTipo1.setModel(new DefaultComboBoxModel<String>());
 		cbTipo1.setBounds(34, 174, 129, 39);
 		frmCrear.getContentPane().add(cbTipo1);
-		
+
 		cbTipo2 = new JComboBox<String>();
 		cbTipo2.setFont(new Font("Verdana", Font.PLAIN, 15));
 		cbTipo2.setBounds(196, 174, 129, 39);
@@ -207,16 +207,16 @@ public class CrearView {
 	private void configureListeners() {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmCrear.dispose(); //Elimina la view Crear
-				new PokedexView(); //Te abre una nueva view de pokedex
+				frmCrear.dispose(); // Elimina la view Crear
+				new PokedexView(); // Te abre una nueva view de pokedex
 			}
 		});
 
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				crearPokemon();
-				frmCrear.dispose(); 
-				new PokedexView(); 
+				frmCrear.dispose();
+				new PokedexView();
 			}
 		});
 	}
@@ -238,40 +238,40 @@ public class CrearView {
 			}
 		}
 
-		if (!repetido) { //Si repetido es false
-			//Crea un pokemon nuevo y lo añade al array list pokemon
+		if (!repetido) { // Si repetido es false
+			// Crea un pokemon nuevo y lo añade al array list pokemon
 //			pokemons.add(new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
 //					Tipo.valueOf(Tipo.class, cbTipo.getSelectedItem().toString()),
 //					Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
 //					textCategoria.getText(), textHabilidad.getText(), textUrl.getText()));
-			
-			Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
-					"", Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
+			Tipos tipo1 = tipos.get(cbTipo1.getSelectedIndex());
+			Tipos tipo2 = tipos.get(cbTipo2.getSelectedIndex() + 1);
+
+			Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(), tipo1.getNombre(),
+					tipo2.getNombre(), Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
 					textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
-			
-			tipos.get(cbTipo1.getSelectedIndex());
-			tipos.get(cbTipo2.getSelectedIndex() + 1);
-			
+
 			pokemonDAO.registrar(a);
-			
+
 			JOptionPane.showMessageDialog(frmCrear, "El pokemon " + a.getNombre() + " se ha registrado en la pokedex");
-			
+
 		} else {
 			JOptionPane.showMessageDialog(frmCrear, "El pokemon ya esta registrado en la pokedex");
 		}
 	}
-	
+
 	/**
-	 * Almacena todos los tipos de los pokemons que estan en la base de datos en un array list y luego te los devuelve
+	 * Almacena todos los tipos de los pokemons que estan en la base de datos en un
+	 * array list y luego te los devuelve
 	 */
-	
+
 	private void fillTipos() {
 		ArrayList<Tipos> tipos = tipoDAO.getAll();
-		
+
 		for (Tipos tipo : tipos) {
 			cbTipo1.addItem(tipo.getNombre());
-			cbTipo2.addItem(tipo.getNombre());
+			cbTipo2.addItem(tipo.getNombre()); // Min video clase 1:28:0
 		}
-		
+
 	}
 }
