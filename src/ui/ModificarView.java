@@ -14,7 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import dao.PokemonDAO;
+import dao.TipoDAO;
 import models.Pokemon;
+import models.Tipos;
+
 import java.awt.Color;
 
 public class ModificarView {
@@ -43,6 +46,8 @@ public class ModificarView {
 	private JLabel lblTitulo;
 	private PokemonDAO pokemonDAO;
 	private ArrayList<Pokemon> pokemons;
+	private TipoDAO tipoDAO;
+	private ArrayList<Tipos> tipos;
 
 	/**
 	 * Create the application.
@@ -50,6 +55,8 @@ public class ModificarView {
 	public ModificarView() {
 		this.pokemonDAO = new PokemonDAO();
 		this.pokemons = pokemonDAO.getAll();
+		this.tipoDAO = new TipoDAO();
+		this.tipos = tipoDAO.getAll();
 		initialize();
 		this.frmModificar.setVisible(true);
 	}
@@ -205,7 +212,6 @@ public class ModificarView {
 
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				cambiar();
 				frmModificar.dispose();
 				new PokedexView();
@@ -222,6 +228,7 @@ public class ModificarView {
 	private void verPokemon(int index) {
 
 		cbTipo1.setSelectedItem(pokemons.get(index).getTipo1());
+		cbTipo2.setSelectedItem(pokemons.get(index).getTipo2());
 		textNumero.setText((pokemons.get(index).getNumero() + ""));
 		textNombre.setText(pokemons.get(index).getNombre());
 		textPeso.setText(pokemons.get(index).getPeso() + "");
@@ -239,8 +246,11 @@ public class ModificarView {
 	 */
 
 	private void cambiar() {
-		Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(), "",
-				Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
+		Tipos tipo1 = tipos.get(cbTipo1.getSelectedIndex());
+		Tipos tipo2 = tipos.get(cbTipo2.getSelectedIndex() + 1);
+		
+		Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(), tipo1.getNombre(),
+				tipo2.getNombre(), Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
 				textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
 
 		pokemonDAO.modificar(a);

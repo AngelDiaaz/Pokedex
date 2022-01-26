@@ -41,7 +41,9 @@ public class PokedexView {
 	private JLabel lblVerAltura;
 	private JLabel lblVerHabilidad;
 	private JLabel lblVerCategoria;
-	private JLabel lblVerTipo;
+	private JLabel lblVerTipo1;
+	private JLabel lblPokedexFondo;
+	private JLabel lblVerTipo2;
 	private static int index = 0;
 	private JLabel lblFoto;
 	private PokemonDAO pokemonDAO;
@@ -113,7 +115,7 @@ public class PokedexView {
 
 		lblTipo = new JLabel("Tipo");
 		lblTipo.setForeground(Color.WHITE);
-		lblTipo.setBounds(37, 215, 55, 25);
+		lblTipo.setBounds(37, 206, 55, 25);
 		lblTipo.setFont(new Font("Verdana", Font.BOLD, 18));
 		frmPokedex.getContentPane().add(lblTipo);
 
@@ -131,7 +133,7 @@ public class PokedexView {
 
 		lblCategoria = new JLabel("Categor\u00EDa");
 		lblCategoria.setForeground(Color.WHITE);
-		lblCategoria.setBounds(37, 304, 115, 31);
+		lblCategoria.setBounds(37, 297, 115, 31);
 		lblCategoria.setFont(new Font("Verdana", Font.BOLD, 18));
 		frmPokedex.getContentPane().add(lblCategoria);
 
@@ -182,21 +184,27 @@ public class PokedexView {
 		lblVerCategoria.setBounds(37, 352, 142, 25);
 		frmPokedex.getContentPane().add(lblVerCategoria);
 
-		lblVerTipo = new JLabel("");
-		lblVerTipo.setForeground(Color.WHITE);
-		lblVerTipo.setFont(new Font("Verdana", Font.PLAIN, 17));
-		lblVerTipo.setBounds(37, 251, 95, 32);
-		frmPokedex.getContentPane().add(lblVerTipo);
+		lblVerTipo1 = new JLabel("");
+		lblVerTipo1.setForeground(Color.WHITE);
+		lblVerTipo1.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblVerTipo1.setBounds(37, 242, 95, 32);
+		frmPokedex.getContentPane().add(lblVerTipo1);
+		
+		lblVerTipo2 = new JLabel("");
+		lblVerTipo2.setForeground(Color.WHITE);
+		lblVerTipo2.setFont(new Font("Verdana", Font.PLAIN, 17));
+		lblVerTipo2.setBounds(161, 242, 95, 32);
+		frmPokedex.getContentPane().add(lblVerTipo2);
 
 		lblFoto = new JLabel("");
 		lblFoto.setBounds(308, 194, 498, 439);
 		frmPokedex.getContentPane().add(lblFoto);
 
-		JLabel lblPokedexFondo = new JLabel("");
+		lblPokedexFondo = new JLabel("");
 		lblPokedexFondo.setIcon(new ImageIcon(PokedexView.class.getResource("/image/fondo pokedex.png")));
 		lblPokedexFondo.setBounds(21, 127, 268, 513);
 		frmPokedex.getContentPane().add(lblPokedexFondo);
-
+		
 	}
 
 	/**
@@ -303,7 +311,8 @@ public class PokedexView {
 //				btnSiguiente.setVisible(true);
 //			}
 
-			lblVerTipo.setText(pokemons.get(index).getTipo1() + "");
+			lblVerTipo1.setText(pokemons.get(index).getTipo1());
+			lblVerTipo2.setText(pokemons.get(index).getTipo2());
 			lblNumero.setText(("Nº " + pokemons.get(index).getNumero() + ""));
 			lblNombrePokemon.setText(pokemons.get(index).getNombre());
 			lblVerPeso.setText(pokemons.get(index).getPeso() + "");
@@ -328,7 +337,8 @@ public class PokedexView {
 			btnEliminar.setVisible(false);
 
 			// Te muestra la view con los campos vacios
-			lblVerTipo.setText("");
+			lblVerTipo1.setText("");
+			lblVerTipo2.setText("");
 			lblNumero.setText("Nº");
 			lblNombrePokemon.setText("");
 			lblVerPeso.setText("");
