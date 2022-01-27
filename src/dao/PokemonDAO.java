@@ -1,10 +1,7 @@
 package dao;
 
-import java.sql.Connection; 
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -23,8 +20,6 @@ public class PokemonDAO extends AbstractDAO{
 				+ "FROM pokemons";
 		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(QUERY);
 			while (rs.next()) {
 				int numero = rs.getInt("idpokemons");
@@ -57,8 +52,6 @@ public class PokemonDAO extends AbstractDAO{
 				+ pokemon.getAltura() + "','" + pokemon.getPeso() + "','" + pokemon.getCategoria() + "','" + pokemon.getHabilidad()
 				+ "','" + pokemon.getUrl() + "');";
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(INSERT);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,8 +67,6 @@ public class PokemonDAO extends AbstractDAO{
 		 final String DELETE = "DELETE FROM pokemons WHERE idpokemons = '" + pokemon.getNumero() + "';";
 
 			 try {
-					Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-					Statement stmt = conn.createStatement();
 					stmt.executeUpdate(DELETE);
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -93,8 +84,6 @@ public class PokemonDAO extends AbstractDAO{
 				pokemon.getCategoria() + "', habilidad = '" + pokemon.getHabilidad() + "', url = '" + pokemon.getUrl() + "' WHERE idpokemons = '" 
 				+ pokemon.getNumero() + "' OR nombre = '" + pokemon.getNombre() + "';";
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(UPDATE);
 		} catch (SQLException e) {
 			e.printStackTrace();

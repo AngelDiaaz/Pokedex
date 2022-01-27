@@ -1,10 +1,7 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -19,8 +16,6 @@ public class UsuarioDAO extends AbstractDAO{
 	public void consulta() {
 		final String QUERY = "SELECT usuario, password FROM usuarios";
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(QUERY);
 			while (rs.next()) {
 				System.out.print("Usuario: " + rs.getString("usuario"));
@@ -41,8 +36,6 @@ public class UsuarioDAO extends AbstractDAO{
 		final String QUERY = "SELECT usuario, password FROM usuarios " + "where usuario = '" + usuario.getUsuario()
 				+ "' and " + "password = '" + usuario.getPassword() + "'";
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(QUERY);
 			return rs.next();
 		} catch (SQLException e) {
@@ -62,8 +55,6 @@ public class UsuarioDAO extends AbstractDAO{
 		final String INSERT = "INSERT INTO usuarios (usuario,password)" + " VALUES ('" + usuario.getUsuario() + "','"
 				+ usuario.getPassword() + "');";
 		try {
-			Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(INSERT);
 			return true;
 		} catch (SQLException e) {
