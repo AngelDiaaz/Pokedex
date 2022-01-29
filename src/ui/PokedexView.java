@@ -189,7 +189,7 @@ public class PokedexView {
 		lblVerTipo1.setFont(new Font("Verdana", Font.PLAIN, 17));
 		lblVerTipo1.setBounds(37, 242, 95, 32);
 		frmPokedex.getContentPane().add(lblVerTipo1);
-		
+
 		lblVerTipo2 = new JLabel("");
 		lblVerTipo2.setForeground(Color.WHITE);
 		lblVerTipo2.setFont(new Font("Verdana", Font.PLAIN, 17));
@@ -204,7 +204,7 @@ public class PokedexView {
 		lblPokedexFondo.setIcon(new ImageIcon(PokedexView.class.getResource("/image/fondo pokedex.png")));
 		lblPokedexFondo.setBounds(21, 127, 268, 513);
 		frmPokedex.getContentPane().add(lblPokedexFondo);
-		
+
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class PokedexView {
 //				} else {
 //					verPokemon(--index);
 //				}
-			}//Mirar cuando este vacio la pokedex
+			}// Mirar cuando este vacio la pokedex
 
 		});
 
@@ -311,8 +311,12 @@ public class PokedexView {
 //				btnSiguiente.setVisible(true);
 //			}
 
-			lblVerTipo1.setText(pokemons.get(index).getTipo1());
-			lblVerTipo2.setText(pokemons.get(index).getTipo2());
+			lblVerTipo1.setText(pokemons.get(index).getTipo1().getNombre());
+			if(!pokemons.get(index).getTipo2().getNombre().equalsIgnoreCase("Ninguno")) {
+				lblVerTipo2.setText(pokemons.get(index).getTipo2().getNombre());
+			} else { //Para que cuando escojamos ninguno en el jcombox no se muestre en la pokedex
+				lblVerTipo2.setVisible(false);
+			}
 			lblNumero.setText(("Nº " + pokemons.get(index).getNumero() + ""));
 			lblNombrePokemon.setText(pokemons.get(index).getNombre());
 			lblVerPeso.setText(pokemons.get(index).getPeso() + "");

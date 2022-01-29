@@ -239,19 +239,20 @@ public class CrearView {
 		}
 
 		if (!repetido) { // Si repetido es false
-			// Crea un pokemon nuevo y lo añade al array list pokemon
-//			pokemons.add(new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
-//					Tipo.valueOf(Tipo.class, cbTipo.getSelectedItem().toString()),
-//					Double.parseDouble(textPeso.getText()), Double.parseDouble(textAltura.getText()),
-//					textCategoria.getText(), textHabilidad.getText(), textUrl.getText()));
-			Tipos tipo1 = tipos.get(cbTipo1.getSelectedIndex());
-			Tipos tipo2 = tipos.get(cbTipo2.getSelectedIndex() + 1);
 
-			Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(), tipo1.getNombre(),
-					tipo2.getNombre(), Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
+			Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
+					Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
 					textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
 
-			pokemonDAO.registrar(a);
+			Tipos tipo1 = tipos.get(cbTipo1.getSelectedIndex());
+			Tipos tipo2 = tipos.get(cbTipo2.getSelectedIndex());
+			a.setTipo1(tipo1);
+			a.setTipo2(tipo2);
+			if (cbTipo1.getSelectedItem() == cbTipo2.getSelectedItem()) {
+				JOptionPane.showMessageDialog(null, "No puedes elegir el mismo profesor favorito dos veces");
+			} else {
+				pokemonDAO.registrar(a);
+			}
 
 			JOptionPane.showMessageDialog(frmCrear, "El pokemon " + a.getNombre() + " se ha registrado en la pokedex");
 
@@ -266,8 +267,6 @@ public class CrearView {
 	 */
 
 	private void fillTipos() {
-		ArrayList<Tipos> tipos = tipoDAO.getAll();
-
 		for (Tipos tipo : tipos) {
 			cbTipo1.addItem(tipo.getNombre());
 			cbTipo2.addItem(tipo.getNombre()); // Min video clase 1:28:0

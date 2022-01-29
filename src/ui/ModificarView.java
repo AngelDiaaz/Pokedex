@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.Font;
+import java.awt.Font; 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import dao.PokemonDAO;
@@ -189,13 +190,13 @@ public class ModificarView {
 		cbTipo1.setModel(new DefaultComboBoxModel<String>());
 		cbTipo1.setBounds(34, 174, 129, 39);
 		frmModificar.getContentPane().add(cbTipo1);
-		
+
 		cbTipo2 = new JComboBox<String>();
 		cbTipo2.setFont(new Font("Verdana", Font.PLAIN, 15));
 		cbTipo2.setBounds(190, 174, 129, 39);
 		frmModificar.getContentPane().add(cbTipo2);
-		
-		
+		fillTipos();
+
 	}
 
 	/**
@@ -246,14 +247,26 @@ public class ModificarView {
 	 */
 
 	private void cambiar() {
-		Tipos tipo1 = tipos.get(cbTipo1.getSelectedIndex());
-		Tipos tipo2 = tipos.get(cbTipo2.getSelectedIndex() + 1);
-		
-		Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(), tipo1.getNombre(),
-				tipo2.getNombre(), Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
+		Pokemon a = new Pokemon(Integer.parseInt(textNumero.getText()), textNombre.getText(),
+				Double.parseDouble(textAltura.getText()), Double.parseDouble(textPeso.getText()),
 				textCategoria.getText(), textHabilidad.getText(), textUrl.getText());
 
-		pokemonDAO.modificar(a);
+		Tipos tipo1 = tipos.get(cbTipo1.getSelectedIndex());
+		Tipos tipo2 = tipos.get(cbTipo2.getSelectedIndex());
+		a.setTipo1(tipo1);
+		a.setTipo2(tipo2);
+		if (cbTipo1.getSelectedItem() == cbTipo2.getSelectedItem()) {
+			JOptionPane.showMessageDialog(null, "No puedes elegir el mismo profesor favorito dos veces");
+		} else {
+			pokemonDAO.modificar(a);
+		}
+
+	}
+	private void fillTipos() {
+		for (Tipos tipo : tipos) {
+			cbTipo1.addItem(tipo.getNombre());
+			cbTipo2.addItem(tipo.getNombre()); // Min video clase 1:28:0
+		}
 
 	}
 }

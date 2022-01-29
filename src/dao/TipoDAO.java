@@ -1,6 +1,6 @@
 package dao;
 
-import java.sql.ResultSet;
+import java.sql.ResultSet; 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -27,6 +27,29 @@ public class TipoDAO extends AbstractDAO {
 			e.printStackTrace();
 		}
 		return tipos;
+	}
+	
+	/**
+	 * Busca el tipo por su ID y si no lo encuentra devuelve NULL.
+	 * @param idTipo id del tipo que queremos buscar
+	 * @return
+	 */
+
+	public Tipos get(int idTipo) {
+		final String QUERY = "SELECT id, nombre "
+				+ "FROM tipos where id = " + idTipo;
+		try {
+			ResultSet rs = stmt.executeQuery(QUERY);
+			while (rs.next()) {
+				var id = rs.getInt("id");
+				var nombre = rs.getString("nombre");
+				Tipos t = new Tipos(id, nombre);
+				return t;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }
