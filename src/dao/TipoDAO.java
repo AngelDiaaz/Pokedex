@@ -14,7 +14,7 @@ public class TipoDAO extends AbstractDAO {
 	 */
 	
 	public ArrayList<Tipos> getAll() {
-		final String QUERY = "SELECT id, nombre FROM tipos";
+		final String QUERY = "SELECT id, nombre FROM tipos ORDER BY id;";
 		ArrayList<Tipos> tipos = new ArrayList<Tipos>();
 		try {
 			ResultSet rs = stmt.executeQuery(QUERY);
@@ -37,7 +37,7 @@ public class TipoDAO extends AbstractDAO {
 
 	public Tipos get(int idTipo) {
 		final String QUERY = "SELECT id, nombre "
-				+ "FROM tipos where id = " + idTipo;
+				+ "FROM tipos where id = '" + idTipo + "' ORDER BY id;";
 		try {
 			ResultSet rs = stmt.executeQuery(QUERY);
 			while (rs.next()) {

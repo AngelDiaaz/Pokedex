@@ -249,7 +249,7 @@ public class CrearView {
 			a.setTipo1(tipo1);
 			a.setTipo2(tipo2);
 			if (cbTipo1.getSelectedItem() == cbTipo2.getSelectedItem()) {
-				JOptionPane.showMessageDialog(null, "No puedes elegir el mismo profesor favorito dos veces");
+				JOptionPane.showMessageDialog(null, "No puedes elegir el mismo tipo dos veces");
 			} else {
 				pokemonDAO.registrar(a);
 			}
@@ -267,6 +267,9 @@ public class CrearView {
 	 */
 
 	private void fillTipos() {
+		cbTipo1.addItem("Ninguno");
+		cbTipo2.addItem("Ninguno");
+
 		for (Tipos tipo : tipos) {
 			cbTipo1.addItem(tipo.getNombre());
 			cbTipo2.addItem(tipo.getNombre()); // Min video clase 1:28:0

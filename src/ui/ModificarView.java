@@ -256,12 +256,17 @@ public class ModificarView {
 		a.setTipo1(tipo1);
 		a.setTipo2(tipo2);
 		if (cbTipo1.getSelectedItem() == cbTipo2.getSelectedItem()) {
-			JOptionPane.showMessageDialog(null, "No puedes elegir el mismo profesor favorito dos veces");
+			JOptionPane.showMessageDialog(null, "No puedes elegir el mismo tipo dos veces");
 		} else {
 			pokemonDAO.modificar(a);
 		}
 
 	}
+	
+	/**
+	 * Almacena todos los tipos de los pokemons que estan en la base de datos en un
+	 * array list y luego te los devuelve
+	 */
 	private void fillTipos() {
 		for (Tipos tipo : tipos) {
 			cbTipo1.addItem(tipo.getNombre());
