@@ -79,7 +79,7 @@ public class CrearView {
 
 	private void configureUIComponents() {
 		frmCrear = new JFrame();
-		frmCrear.getContentPane().setBackground(new Color(153, 204, 204));
+		frmCrear.getContentPane().setBackground(new Color(255, 51, 51));
 		frmCrear.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(PokedexView.class.getResource("/image/icono app.png")));
 		frmCrear.setTitle("Creacion");
@@ -100,26 +100,31 @@ public class CrearView {
 		frmCrear.getContentPane().add(btnGuardar);
 
 		lblTipo = new JLabel("Tipo");
+		lblTipo.setForeground(new Color(255, 255, 255));
 		lblTipo.setBounds(154, 124, 46, 23);
 		lblTipo.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmCrear.getContentPane().add(lblTipo);
 
 		lblPeso = new JLabel("Peso");
+		lblPeso.setForeground(new Color(255, 255, 255));
 		lblPeso.setBounds(50, 260, 55, 25);
 		lblPeso.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmCrear.getContentPane().add(lblPeso);
 
 		lblAltura = new JLabel("Altura");
+		lblAltura.setForeground(new Color(255, 255, 255));
 		lblAltura.setBounds(177, 260, 71, 25);
 		lblAltura.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmCrear.getContentPane().add(lblAltura);
 
 		lblCategoria = new JLabel("Categor\u00EDa");
+		lblCategoria.setForeground(new Color(255, 255, 255));
 		lblCategoria.setBounds(527, 261, 95, 23);
 		lblCategoria.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmCrear.getContentPane().add(lblCategoria);
 
 		lblHabilidad = new JLabel("Habilidad");
+		lblHabilidad.setForeground(new Color(255, 255, 255));
 		lblHabilidad.setBounds(82, 433, 81, 23);
 		lblHabilidad.setFont(new Font("Verdana", Font.BOLD, 16));
 		frmCrear.getContentPane().add(lblHabilidad);
@@ -149,6 +154,7 @@ public class CrearView {
 		textCategoria.setColumns(10);
 
 		lblUrl = new JLabel("URL");
+		lblUrl.setForeground(new Color(255, 255, 255));
 		lblUrl.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblUrl.setBounds(441, 434, 64, 21);
 		frmCrear.getContentPane().add(lblUrl);
@@ -166,11 +172,13 @@ public class CrearView {
 		textNombre.setColumns(10);
 
 		lblNombre = new JLabel("Nombre");
+		lblNombre.setForeground(new Color(255, 255, 255));
 		lblNombre.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblNombre.setBounds(521, 125, 101, 21);
 		frmCrear.getContentPane().add(lblNombre);
 
 		lblNumero = new JLabel("N\u00FAmero");
+		lblNumero.setForeground(new Color(255, 255, 255));
 		lblNumero.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblNumero.setBounds(333, 261, 87, 22);
 		frmCrear.getContentPane().add(lblNumero);
@@ -182,17 +190,21 @@ public class CrearView {
 		textNumero.setColumns(10);
 
 		lblCrear = new JLabel("Crear Pokemon");
-		lblCrear.setFont(new Font("Verdana", Font.BOLD, 24));
-		lblCrear.setBounds(269, 43, 216, 33);
+		lblCrear.setForeground(new Color(255, 255, 255));
+		lblCrear.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 26));
+		lblCrear.setBounds(239, 43, 246, 33);
 		frmCrear.getContentPane().add(lblCrear);
 
 		cbTipo1 = new JComboBox<String>();
+		cbTipo1.setForeground(new Color(0, 0, 0));
+		cbTipo1.setBackground(new Color(255, 255, 255));
 		cbTipo1.setFont(new Font("Verdana", Font.PLAIN, 15));
 		cbTipo1.setModel(new DefaultComboBoxModel<String>());
 		cbTipo1.setBounds(34, 174, 129, 39);
 		frmCrear.getContentPane().add(cbTipo1);
 
 		cbTipo2 = new JComboBox<String>();
+		cbTipo2.setBackground(new Color(255, 255, 255));
 		cbTipo2.setFont(new Font("Verdana", Font.PLAIN, 15));
 		cbTipo2.setBounds(196, 174, 129, 39);
 		frmCrear.getContentPane().add(cbTipo2);

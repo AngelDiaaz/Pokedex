@@ -76,7 +76,7 @@ public class PokedexView {
 
 	private void configureUIComponents() {
 		frmPokedex = new JFrame();
-		frmPokedex.getContentPane().setBackground(new Color(153, 204, 204));
+		frmPokedex.getContentPane().setBackground(new Color(255, 255, 255));
 		frmPokedex.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(PokedexView.class.getResource("/image/icono app.png")));
 		frmPokedex.setTitle("Pokedex");
@@ -149,13 +149,15 @@ public class PokedexView {
 		frmPokedex.getContentPane().add(lblNumero);
 
 		btnSiguiente = new JButton(">");
-		btnSiguiente.setBackground(Color.WHITE);
+		btnSiguiente.setForeground(new Color(255, 255, 255));
+		btnSiguiente.setBackground(new Color(220, 20, 60));
 		btnSiguiente.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnSiguiente.setBounds(730, 23, 88, 69);
 		frmPokedex.getContentPane().add(btnSiguiente);
 
 		btnAtras = new JButton("<");
-		btnAtras.setBackground(Color.WHITE);
+		btnAtras.setForeground(new Color(255, 255, 255));
+		btnAtras.setBackground(new Color(220, 20, 60));
 		btnAtras.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnAtras.setBounds(23, 23, 82, 69);
 		frmPokedex.getContentPane().add(btnAtras);
